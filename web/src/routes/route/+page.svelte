@@ -25,7 +25,6 @@
         error = '';
       })
       .catch((e) => (error = (e as Error).message));
-    // 乗る予定のバス(接近中)の情報も取得してルート図に重ねる
     const from = Number(params.fromStopNo);
     const to = Number(params.toStopNo);
     if (from && to) {
@@ -45,12 +44,33 @@
     return d.toLocaleTimeString('ja-JP');
   }
 
-  // 接近中バスの短いラベル:「あと16分」or「22:15発予定」
   function busLabel(bus: ApproachBus) {
     if (bus.etaMinutes !== null) return `あと${bus.etaMinutes}分`;
     const m = bus.statusText.match(/(\d{1,2}:\d{2})発予定/);
     return m ? `${m[1]}発予定` : '';
   }
+
+  // 接近中のバス(運行中)を、ルート図の「次の通過バス停」の位置にマップする
+  // approachingStops の先頭 = バスが次に通るバス停 = 現在位置の目安
+  const busMarkers = $derived.by(() => {
+    const map = new Map<string, ApproachBus[]>();
+    if (!approach) return map;
+    for (const bus of approach.buses) {
+      if (bus.etaMinutes === null) continue; // 未発バスは現在位置が無い
+      const next = bus.approachingStops[0]?.replace(/\s*（.*?着予定）/, '').trim();
+      if (!next) continue;
+      const arr = map.get(next) ?? [];
+      arr.push(bus);
+      map.set(next, arr);
+    }
+    return map;
+  });
+
+  // 未発バス(現在位置なし)は乗車バス停に発予定バッジとして表示
+  const notDeparted = $derived.by(() => {
+    if (!approach) return [];
+    return approach.buses.filter((b) => b.etaMinutes === null);
+  });
 </script>
 
 <div class="mx-auto max-w-lg px-4 py-8">
@@ -84,7 +104,8 @@
 
     {@const hasAnyBus =
       route.stops.some((s) => s.busesHere.length > 0) ||
-      (approach?.buses.length ?? 0) > 0}
+      busMarkers.size > 0 ||
+      notDeparted.length > 0}
     {#if !hasAnyBus}
       <p class="mb-3 rounded-lg bg-gray-50 px-3 py-2 text-center text-sm text-gray-500">
         現在この区間を運行中のバスはいません
@@ -95,36 +116,51 @@
       <ol>
         {#each route.stops as stop, i (i)}
           {@const hasBus = stop.busesHere.length > 0}
+          {@const busesNearby = busMarkers.get(stop.name) ?? []}
           <li class="relative flex items-start gap-3 pb-4 last:pb-0">
             {#if i < route.stops.length - 1}
               <span
-                class="absolute left-[11px] top-6 h-full w-0.5 {hasBus ? 'bg-blue-400' : 'bg-gray-200'}"
+                class="absolute left-[11px] top-6 h-full w-0.5 {hasBus || busesNearby.length > 0
+                  ? 'bg-amber-300'
+                  : 'bg-gray-200'}"
               ></span>
             {/if}
             <span
               class="mt-1.5 h-3 w-3 shrink-0 rounded-full {hasBus
                 ? 'bg-blue-500'
-                : stop.type === 'departure'
-                  ? 'bg-green-500'
-                  : stop.type === 'destination'
-                    ? 'bg-red-500'
-                    : 'bg-gray-300'}"
+                : busesNearby.length > 0
+                  ? 'bg-amber-400'
+                  : stop.type === 'departure'
+                    ? 'bg-green-500'
+                    : stop.type === 'destination'
+                      ? 'bg-red-500'
+                      : 'bg-gray-300'}"
             ></span>
             <div class="min-w-0 flex-1">
-              <p class="{hasBus ? 'font-bold text-blue-700' : ''}">{stop.name}</p>
+              <p class="{hasBus || busesNearby.length > 0 ? 'font-bold' : ''}">{stop.name}</p>
               <div class="flex flex-wrap gap-1.5">
                 {#if stop.type === 'departure'}
                   <span class="rounded bg-green-100 px-1.5 py-0.5 text-xs text-green-700">乗車</span>
-                  {#each approach?.buses ?? [] as bus (bus.vehicle + bus.routePath)}
-                    <span
-                      class="rounded bg-amber-100 px-1.5 py-0.5 text-xs font-medium text-amber-700"
-                      title={bus.statusText}
-                    >
-                      🚌 {bus.vehicle} {busLabel(bus)}
-                    </span>
-                  {/each}
                 {:else if stop.type === 'destination'}
                   <span class="rounded bg-red-100 px-1.5 py-0.5 text-xs text-red-700">降車</span>
+                {/if}
+                {#each busesNearby as b (b.vehicle + b.routePath)}
+                  <span
+                    class="rounded bg-amber-100 px-1.5 py-0.5 text-xs font-medium text-amber-700"
+                    title={b.statusText}
+                  >
+                    🚌 {b.vehicle} {busLabel(b)}
+                  </span>
+                {/each}
+                {#if stop.type === 'departure'}
+                  {#each notDeparted as b (b.vehicle + b.routePath)}
+                    <span
+                      class="rounded bg-gray-100 px-1.5 py-0.5 text-xs text-gray-500"
+                      title={b.statusText}
+                    >
+                      🚌 {b.vehicle} {busLabel(b)}
+                    </span>
+                  {/each}
                 {/if}
                 {#each stop.busesHere as v (v)}
                   <span class="rounded bg-blue-100 px-1.5 py-0.5 text-xs font-medium text-blue-700">
