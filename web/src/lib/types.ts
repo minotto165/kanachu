@@ -11,6 +11,9 @@ export interface ApproachBus {
   vehicle: string;
   mark: string;
   arrivalMinutes: number;
+  etaMinutes: number | null;
+  statusText: string;
+  approachingStops: string[];
   status: 'normal' | 'late' | 'unknown';
   fare: { cash: number; ic: number };
   routePath: string;

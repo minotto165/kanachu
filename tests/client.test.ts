@@ -34,6 +34,10 @@ describe("parseApproach", () => {
     expect(first.fare).toEqual({ cash: 230, ic: 230 });
     expect(first.routePath).toContain("displayrouteinfo");
     expect(first.routePath).toContain("routeno=19250");
+    // 接近情報セクション(fixture は出発予定形式)
+    expect(first.etaMinutes).toBeNull();
+    expect(first.statusText).toContain("発予定");
+    expect(first.approachingStops.length).toBeGreaterThan(0);
   });
 });
 

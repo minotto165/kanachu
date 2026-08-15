@@ -68,7 +68,7 @@
           <div class="mb-1 flex items-baseline justify-between">
             <span class="text-lg font-bold">{bus.route}</span>
             <span class="text-sm text-gray-600">
-              <span class="text-xl font-bold text-blue-600">{bus.arrivalMinutes}</span>分後
+              <span class="text-xl font-bold text-blue-600">{bus.etaMinutes ?? bus.arrivalMinutes}</span>分後
             </span>
           </div>
           <div class="mb-1 text-sm">
@@ -77,6 +77,9 @@
               <span class="ml-1 text-xs text-gray-500">({bus.via}経由)</span>
             {/if}
           </div>
+          {#if bus.statusText}
+            <div class="mb-1 text-xs text-gray-500">{bus.statusText}</div>
+          {/if}
           <div class="flex items-center justify-between text-xs text-gray-500">
             <span>🚌 {bus.vehicle}{bus.mark}</span>
             <span>現金 {bus.fare.cash}円 / IC {bus.fare.ic}円</span>

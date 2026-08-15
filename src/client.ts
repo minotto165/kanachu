@@ -51,40 +51,45 @@ export async function fetchStops(query: string): Promise<Stop[]> {
 export function parseApproach(html: string, fromCode: number, toCode: number): ApproachInfo {
   const $ = cheerio.load(html);
   const buses: ApproachBus[] = [];
-  const tables = $("table").toArray();
 
-  for (let i = 0; i < tables.length; i++) {
-    const t = $(tables[i]);
-    const ths = t
-      .find("th")
-      .map((_, el) => $(el).text().trim())
-      .get();
-    if (!ths.includes("系統")) continue;
+  // 各バスは .wrap > .col01(系統/所要時分/運賃テーブル) + .col02(接近情報) のペア
+  $(".wrap").each((_, wrapEl) => {
+    const wrap = $(wrapEl);
+    const col01 = wrap.find(".col01").first();
+    const col02 = wrap.find(".col02").first();
+    if (!col01.length) return;
 
+    // col01: テーブルから系統・行き先・経由・車両番号・所要時分・運賃をまとめて取得
     const cells: Record<string, string> = {};
-    t.find("tr").each((_, tr) => {
-      const th = $(tr).find("th").text().trim();
-      const td = $(tr).find("td").text().trim();
-      if (th) cells[th] = td;
-    });
-
-    const vehicleRaw = (cells["車両番号"] ?? "").trim();
-    const vmatch = vehicleRaw.match(/^([^\s※★]+)\s*(※|★)?/);
-    const link = t.find('a[href*="displayrouteinfo"]').attr("href") ?? "";
-
-    const next = i + 1 < tables.length ? $(tables[i + 1]) : $();
-    const arrivalMatch = next.text().match(/(\d+)分/);
-    const next2 = i + 2 < tables.length ? $(tables[i + 2]) : $();
-    const fareCells: Record<string, string> = {};
-    next2.find("tr").each((_, tr) => {
+    col01.find("tr").each((_, tr) => {
       $(tr)
         .find("th")
         .each((_, th) => {
           const label = $(th).text().trim();
           const td = $(th).next("td");
-          if (label && td.length) fareCells[label] = td.text().trim();
+          if (label && td.length) cells[label] = td.text().trim();
         });
     });
+    if (!cells["系統"]) return;
+
+    const vehicleRaw = (cells["車両番号"] ?? "").trim();
+    const vmatch = vehicleRaw.match(/^([^\s※★]+)\s*(※|★)?/);
+    const link = col01.find('a[href*="displayrouteinfo"]').attr("href") ?? "";
+    const arrivalMatch = (cells["所要時分"] ?? "").match(/(\d+)分/);
+
+    // col02: 接近情報(バスごとの実際の到着予測 + 現在位置バス停リスト)
+    let statusText = "";
+    let etaMinutes: number | null = null;
+    const approachingStops: string[] = [];
+    if (col02.length) {
+      statusText = col02.find("p.title01").text().replace(/\s+/g, " ").trim();
+      const etaMatch = statusText.match(/あと(\d+)分/);
+      if (etaMatch) etaMinutes = Number(etaMatch[1]);
+      col02.find(".placeArea01").each((_, el) => {
+        const name = $(el).find("p").first().text().trim();
+        if (name) approachingStops.push(name);
+      });
+    }
 
     buses.push({
       route: cells["系統"] ?? "",
@@ -92,16 +97,18 @@ export function parseApproach(html: string, fromCode: number, toCode: number): A
       via: cells["経由"] ?? "",
       vehicle: vmatch?.[1] ?? vehicleRaw,
       mark: vmatch?.[2] ?? "",
-      arrivalMinutes: arrivalMatch ? Number(arrivalMatch[1] ?? -1) : -1,
+      arrivalMinutes: arrivalMatch ? Number(arrivalMatch[1]) : -1,
+      etaMinutes,
+      statusText,
+      approachingStops,
       status: "normal",
       fare: {
-        cash: Number.parseInt(fareCells["現金"] ?? "0") || 0,
-        ic: Number.parseInt(fareCells["IC"] ?? "0") || 0,
+        cash: Number.parseInt(cells["現金"] ?? "0") || 0,
+        ic: Number.parseInt(cells["IC"] ?? "0") || 0,
       },
       routePath: link,
     });
-    i += 2;
-  }
+  });
 
   return {
     from: { code: fromCode, name: "" },

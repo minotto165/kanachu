@@ -11,7 +11,14 @@ export interface ApproachBus {
   vehicle: string;
   /** 車両番号に付くマーク(※/★)。神奈中側の凡例に従う */
   mark: string;
+  /** 乗車〜降車バス停の標準所要時分(全バス同じ値) */
   arrivalMinutes: number;
+  /** バスごとの実際の到着予測(「あとN分」形式のときのみ、それ以外は null) */
+  etaMinutes: number | null;
+  /** 接近情報ステータス(「笹子にあと24分で到着 運行中」等) */
+  statusText: string;
+  /** 現在位置から乗車バス停までのバス停リスト */
+  approachingStops: string[];
   status: "normal" | "late" | "unknown";
   fare: { cash: number; ic: number };
   routePath: string;
