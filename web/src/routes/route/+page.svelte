@@ -1,0 +1,111 @@
+<script lang="ts">
+  import { onMount } from 'svelte';
+  import { getRoute } from '$lib/api';
+  import type { RouteInfo } from '$lib/types';
+
+  let route = $state<RouteInfo | null>(null);
+  let error = $state('');
+  let lastUpdated = $state<Date | null>(null);
+
+  function load() {
+    const p = new URLSearchParams(window.location.search);
+    const params = {
+      routeno: p.get('routeno') ?? '',
+      fromStopNo: p.get('fromStopNo') ?? '',
+      toStopNo: p.get('toStopNo') ?? '',
+      routeName: p.get('routeName') ?? '',
+      keikaName: p.get('keikaName') ?? '',
+      lastStopName: p.get('lastStopName') ?? '',
+    };
+    getRoute(params)
+      .then((d) => {
+        route = d;
+        lastUpdated = new Date();
+        error = '';
+      })
+      .catch((e) => (error = (e as Error).message));
+  }
+
+  onMount(() => {
+    load();
+    const id = setInterval(load, 30000);
+    return () => clearInterval(id);
+  });
+
+  function fmt(d: Date) {
+    return d.toLocaleTimeString('ja-JP');
+  }
+</script>
+
+<div class="mx-auto max-w-lg px-4 py-8">
+  <div class="mb-6 flex items-center justify-between">
+    <a
+      href="/approach?from={new URLSearchParams(window.location.search).get('fromStopNo')}&to={new URLSearchParams(window.location.search).get('toStopNo')}"
+      class="text-sm text-blue-600 hover:underline"
+    >
+      ← 接近情報に戻る
+    </a>
+    {#if lastUpdated}
+      <button
+        type="button"
+        onclick={load}
+        class="text-xs text-gray-500 hover:underline"
+      >
+        🔄 {fmt(lastUpdated)} 更新
+      </button>
+    {/if}
+  </div>
+
+  {#if error}
+    <p class="text-red-600">{error}</p>
+  {:else if route}
+    <h1 class="mb-1 text-xl font-bold">
+      {route.route}系統 {route.destination}行き
+    </h1>
+    {#if route.via}
+      <p class="mb-4 text-sm text-gray-500">{route.via}経由</p>
+    {/if}
+
+    <div class="rounded-xl border border-gray-200 bg-white p-4">
+      <ol>
+        {#each route.stops as stop, i (i)}
+          {@const hasBus = stop.busesHere.length > 0}
+          <li class="relative flex items-start gap-3 pb-4 last:pb-0">
+            {#if i < route.stops.length - 1}
+              <span
+                class="absolute left-[11px] top-6 h-full w-0.5 {hasBus ? 'bg-blue-400' : 'bg-gray-200'}"
+              ></span>
+            {/if}
+            <span
+              class="mt-1.5 h-3 w-3 shrink-0 rounded-full {hasBus
+                ? 'bg-blue-500'
+                : stop.type === 'departure'
+                  ? 'bg-green-500'
+                  : stop.type === 'destination'
+                    ? 'bg-red-500'
+                    : 'bg-gray-300'}"
+            ></span>
+            <div class="min-w-0 flex-1">
+              <p class="{hasBus ? 'font-bold text-blue-700' : ''}">{stop.name}</p>
+              <div class="flex gap-1.5">
+                {#if stop.type === 'departure'}
+                  <span class="rounded bg-green-100 px-1.5 py-0.5 text-xs text-green-700">乗車</span>
+                {:else if stop.type === 'destination'}
+                  <span class="rounded bg-red-100 px-1.5 py-0.5 text-xs text-red-700">降車</span>
+                {/if}
+                {#each stop.busesHere as v (v)}
+                  <span class="rounded bg-blue-100 px-1.5 py-0.5 text-xs font-medium text-blue-700">
+                    🚌 {v}
+                  </span>
+                {/each}
+              </div>
+            </div>
+          </li>
+        {/each}
+      </ol>
+    </div>
+    <p class="mt-3 text-center text-xs text-gray-400">30秒ごとに自動更新</p>
+  {:else}
+    <p class="text-gray-500">読み込み中...</p>
+  {/if}
+</div>

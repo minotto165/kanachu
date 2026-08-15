@@ -1,4 +1,5 @@
 import { Hono } from "hono";
+import { serveStatic } from "hono/bun";
 import { fetchApproach, fetchRoute, fetchStops, UpstreamError } from "./client";
 import type { RouteQuery } from "./types";
 
@@ -58,5 +59,14 @@ app.get("/api/route", async (c) => {
 });
 
 app.get("/health", (c) => c.json({ ok: true }));
+
+// 存在しない API パスは JSON 404(SPA fallback に落とさない)
+app.get("/api/*", (c) => c.json({ error: { code: "NOT_FOUND", message: "Not found" } }, 404));
+
+// ---- SPA 静的配信 (web/ のビルド成果物) ----
+// /api と /health より後に定義するので、API ルートが優先される
+app.get("/_app/*", serveStatic({ root: "./web-build" }));
+app.get("/favicon.png", serveStatic({ path: "./web-build/favicon.png" }));
+app.get("*", serveStatic({ path: "./web-build/200.html" }));
 
 export default app;
