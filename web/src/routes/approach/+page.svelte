@@ -68,7 +68,12 @@
           <div class="mb-1 flex items-baseline justify-between">
             <span class="text-lg font-bold">{bus.route}</span>
             <span class="text-sm text-gray-600">
-              <span class="text-xl font-bold text-blue-600">{bus.etaMinutes ?? bus.arrivalMinutes}</span>分後
+              {#if bus.etaMinutes !== null}
+                <span class="text-xl font-bold text-blue-600">{bus.etaMinutes}</span>分後
+              {:else}
+                {@const dep = bus.statusText.match(/(\d{1,2}:\d{2})発予定/)?.[1] ?? ''}
+                <span class="text-base font-semibold text-gray-500">{dep}発予定</span>
+              {/if}
             </span>
           </div>
           <div class="mb-1 text-sm">
