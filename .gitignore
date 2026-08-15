@@ -1,6 +1,10 @@
 # dependencies (bun install)
 node_modules
 
+# sveltekit build artifacts
+web/build
+web/.svelte-kit
+
 # output
 out
 dist
