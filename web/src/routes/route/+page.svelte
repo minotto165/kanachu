@@ -47,12 +47,6 @@
     return d.toLocaleTimeString('ja-JP');
   }
 
-  function busLabel(bus: ApproachBus) {
-    if (bus.etaMinutes !== null) return `あと${bus.etaMinutes}分`;
-    const m = bus.statusText.match(/(\d{1,2}:\d{2})発予定/);
-    return m ? `${m[1]}発予定` : '';
-  }
-
   // ルート図内(busesHere)に表示済みの車両は、接近マーカーを出さない(二重表示防止)
   const onRouteVehicles = $derived.by(
     () => new Set(route?.stops.flatMap((s) => s.busesHere) ?? []),
@@ -75,14 +69,6 @@
       map.set(next, arr);
     }
     return map;
-  });
-
-  // 未発バス(現在位置なし)は乗車バス停に発予定バッジとして表示
-  const notDeparted = $derived.by(() => {
-    if (!approach) return [];
-    return approach.buses.filter(
-      (b) => b.etaMinutes === null && (!vehicle || b.vehicle === vehicle),
-    );
   });
 </script>
 
@@ -119,9 +105,7 @@
     {/if}
 
     {@const hasAnyBus =
-      route.stops.some((s) => s.busesHere.length > 0) ||
-      busMarkers.size > 0 ||
-      notDeparted.length > 0}
+      route.stops.some((s) => s.busesHere.length > 0) || busMarkers.size > 0}
     {#if !hasAnyBus}
       <p class="mb-3 rounded-lg bg-gray-50 px-3 py-2 text-center text-sm text-gray-500">
         現在この区間を運行中のバスはいません
@@ -165,19 +149,9 @@
                     class="rounded bg-amber-100 px-1.5 py-0.5 text-xs font-medium text-amber-700"
                     title={b.statusText}
                   >
-                    🚌 {b.vehicle} {busLabel(b)}
+                    🚌 {b.vehicle}
                   </span>
                 {/each}
-                {#if stop.type === 'departure'}
-                  {#each notDeparted as b (b.vehicle + b.routePath)}
-                    <span
-                      class="rounded bg-gray-100 px-1.5 py-0.5 text-xs text-gray-500"
-                      title={b.statusText}
-                    >
-                      🚌 {b.vehicle} {busLabel(b)}
-                    </span>
-                  {/each}
-                {/if}
                 {#each stop.busesHere as v (v)}
                   <span class="rounded bg-blue-100 px-1.5 py-0.5 text-xs font-medium text-blue-700">
                     🚌 {v}
