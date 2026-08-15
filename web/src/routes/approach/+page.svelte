@@ -37,6 +37,7 @@
       routeName: bus.route,
       keikaName: bus.via,
       lastStopName: bus.destination,
+      vehicle: bus.vehicle,
     });
     goto(`/route?${q}`);
   }

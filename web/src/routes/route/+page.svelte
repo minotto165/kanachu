@@ -7,6 +7,7 @@
   let approach = $state<ApproachInfo | null>(null);
   let error = $state('');
   let lastUpdated = $state<Date | null>(null);
+  let vehicle = $state('');
 
   function load() {
     const p = new URLSearchParams(window.location.search);
@@ -18,6 +19,8 @@
       keikaName: p.get('keikaName') ?? '',
       lastStopName: p.get('lastStopName') ?? '',
     };
+    // approach から遷移した場合、クリックされた車両だけに絞る
+    vehicle = p.get('vehicle') ?? '';
     getRoute(params)
       .then((d) => {
         route = d;
@@ -52,11 +55,13 @@
 
   // 接近中のバス(運行中)を、ルート図の「次の通過バス停」の位置にマップする
   // approachingStops の先頭 = バスが次に通るバス停 = 現在位置の目安
+  // approach から遷移した場合(vehicle 指定)は、クリックされた車両だけに絞る
   const busMarkers = $derived.by(() => {
     const map = new Map<string, ApproachBus[]>();
     if (!approach) return map;
     for (const bus of approach.buses) {
       if (bus.etaMinutes === null) continue; // 未発バスは現在位置が無い
+      if (vehicle && bus.vehicle !== vehicle) continue;
       const next = bus.approachingStops[0]?.replace(/\s*（.*?着予定）/, '').trim();
       if (!next) continue;
       const arr = map.get(next) ?? [];
@@ -69,7 +74,9 @@
   // 未発バス(現在位置なし)は乗車バス停に発予定バッジとして表示
   const notDeparted = $derived.by(() => {
     if (!approach) return [];
-    return approach.buses.filter((b) => b.etaMinutes === null);
+    return approach.buses.filter(
+      (b) => b.etaMinutes === null && (!vehicle || b.vehicle === vehicle),
+    );
   });
 </script>
 
@@ -98,6 +105,9 @@
     <h1 class="mb-1 text-xl font-bold">
       {route.route}系統 {route.destination}行き
     </h1>
+    {#if vehicle}
+      <p class="mb-1 text-sm font-medium text-amber-700">🚌 {vehicle} の運行状況</p>
+    {/if}
     {#if route.via}
       <p class="mb-4 text-sm text-gray-500">{route.via}経由</p>
     {/if}
