@@ -130,6 +130,12 @@ export function parseRoute(html: string): RouteInfo {
   const $ = cheerio.load(html);
   const stops: RouteStop[] = [];
 
+  // 乗車/降車バス停は2通りの表現がある:
+  // A) placeArea01 の class に departure/destination が付く
+  // B) frameBox01/frameBox02 の <p class="text"> で名前が示される
+  const depName = $(".frameBox01 p.text").first().text().trim();
+  const destName = $(".frameBox02 p.text").first().text().trim();
+
   $(".placeArea01").each((_, el) => {
     const bs = $(el).find(".inner_busstop").first();
     const name = bs.find("p").text().trim();
@@ -139,7 +145,11 @@ export function parseRoute(html: string): RouteInfo {
       ? "departure"
       : cls.includes("destination")
         ? "destination"
-        : "normal";
+        : depName && name === depName
+          ? "departure"
+          : destName && name === destName
+            ? "destination"
+            : "normal";
 
     const busesHere: string[] = [];
     if ($(el).find(".inner_arrow").first().hasClass("nowBetween")) {

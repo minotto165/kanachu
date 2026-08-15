@@ -1,9 +1,10 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { getRoute } from '$lib/api';
-  import type { RouteInfo } from '$lib/types';
+  import { getApproach, getRoute } from '$lib/api';
+  import type { ApproachBus, ApproachInfo, RouteInfo } from '$lib/types';
 
   let route = $state<RouteInfo | null>(null);
+  let approach = $state<ApproachInfo | null>(null);
   let error = $state('');
   let lastUpdated = $state<Date | null>(null);
 
@@ -24,6 +25,14 @@
         error = '';
       })
       .catch((e) => (error = (e as Error).message));
+    // 乗る予定のバス(接近中)の情報も取得してルート図に重ねる
+    const from = Number(params.fromStopNo);
+    const to = Number(params.toStopNo);
+    if (from && to) {
+      getApproach(from, to)
+        .then((d) => (approach = d))
+        .catch(() => {});
+    }
   }
 
   onMount(() => {
@@ -34,6 +43,13 @@
 
   function fmt(d: Date) {
     return d.toLocaleTimeString('ja-JP');
+  }
+
+  // 接近中バスの短いラベル:「あと16分」or「22:15発予定」
+  function busLabel(bus: ApproachBus) {
+    if (bus.etaMinutes !== null) return `あと${bus.etaMinutes}分`;
+    const m = bus.statusText.match(/(\d{1,2}:\d{2})発予定/);
+    return m ? `${m[1]}発予定` : '';
   }
 </script>
 
@@ -66,7 +82,9 @@
       <p class="mb-4 text-sm text-gray-500">{route.via}経由</p>
     {/if}
 
-    {@const hasAnyBus = route.stops.some((s) => s.busesHere.length > 0)}
+    {@const hasAnyBus =
+      route.stops.some((s) => s.busesHere.length > 0) ||
+      (approach?.buses.length ?? 0) > 0}
     {#if !hasAnyBus}
       <p class="mb-3 rounded-lg bg-gray-50 px-3 py-2 text-center text-sm text-gray-500">
         現在この区間を運行中のバスはいません
@@ -94,9 +112,17 @@
             ></span>
             <div class="min-w-0 flex-1">
               <p class="{hasBus ? 'font-bold text-blue-700' : ''}">{stop.name}</p>
-              <div class="flex gap-1.5">
+              <div class="flex flex-wrap gap-1.5">
                 {#if stop.type === 'departure'}
                   <span class="rounded bg-green-100 px-1.5 py-0.5 text-xs text-green-700">乗車</span>
+                  {#each approach?.buses ?? [] as bus (bus.vehicle + bus.routePath)}
+                    <span
+                      class="rounded bg-amber-100 px-1.5 py-0.5 text-xs font-medium text-amber-700"
+                      title={bus.statusText}
+                    >
+                      🚌 {bus.vehicle} {busLabel(bus)}
+                    </span>
+                  {/each}
                 {:else if stop.type === 'destination'}
                   <span class="rounded bg-red-100 px-1.5 py-0.5 text-xs text-red-700">降車</span>
                 {/if}
