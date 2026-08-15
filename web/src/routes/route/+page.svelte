@@ -66,6 +66,13 @@
       <p class="mb-4 text-sm text-gray-500">{route.via}経由</p>
     {/if}
 
+    {@const hasAnyBus = route.stops.some((s) => s.busesHere.length > 0)}
+    {#if !hasAnyBus}
+      <p class="mb-3 rounded-lg bg-gray-50 px-3 py-2 text-center text-sm text-gray-500">
+        現在この区間を運行中のバスはいません
+      </p>
+    {/if}
+
     <div class="rounded-xl border border-gray-200 bg-white p-4">
       <ol>
         {#each route.stops as stop, i (i)}
