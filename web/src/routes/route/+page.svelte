@@ -53,6 +53,11 @@
     return m ? `${m[1]}発予定` : '';
   }
 
+  // ルート図内(busesHere)に表示済みの車両は、接近マーカーを出さない(二重表示防止)
+  const onRouteVehicles = $derived.by(
+    () => new Set(route?.stops.flatMap((s) => s.busesHere) ?? []),
+  );
+
   // 接近中のバス(運行中)を、ルート図の「次の通過バス停」の位置にマップする
   // approachingStops の先頭 = バスが次に通るバス停 = 現在位置の目安
   // approach から遷移した場合(vehicle 指定)は、クリックされた車両だけに絞る
@@ -62,6 +67,7 @@
     for (const bus of approach.buses) {
       if (bus.etaMinutes === null) continue; // 未発バスは現在位置が無い
       if (vehicle && bus.vehicle !== vehicle) continue;
+      if (onRouteVehicles.has(bus.vehicle)) continue; // ルート内は busesHere で表示済み
       const next = bus.approachingStops[0]?.replace(/\s*（.*?着予定）/, '').trim();
       if (!next) continue;
       const arr = map.get(next) ?? [];
