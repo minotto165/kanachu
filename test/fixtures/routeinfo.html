@@ -1,0 +1,437 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Language" content="ja" />
+<meta name="robots" content="index,follow" />
+<title>厚09 宿原入口行き バスルート | 接近情報検索 | 神奈中バスロケ</title>
+<meta name="Description" content="神奈中バスが現在どこを走行しているか、バスルート（系統図）で確認できます。" />
+<meta name="Keywords" content="神奈中,バスロケ,バス停,接近情報,系統,ルート" />
+
+<link rel="stylesheet" type="text/css" href="/pc/css/reset.css" media="all" />
+<link rel="stylesheet" type="text/css" href="/pc/css/common.css" media="all" />
+<script type="text/javascript" src="/pc/js/jquery-1.7.2.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/pc/js/common.js" charset="UTF-8"></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STSQH0MF5N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-STSQH0MF5N');
+</script>
+<script type="text/javascript">
+function reload(){
+	var obj = document.getElementById("reloadFlg");
+	if( obj.checked == false ){
+		location.reload();
+	}
+}
+</script>
+</head>
+<body onload="setInterval('reload()',30000)">
+
+
+
+
+
+<div id="headWrap">
+	<div id="header">
+
+		<p id="logo"><a href="top"><img src="/pc/images/logo.gif" alt="Kanachu 神奈中バスロケーション 響きあう、明日へ" width="283" height="44" /></a></p>
+		<div id="headNavi">
+			<ul>
+				<li><a href="http://www.kanachu.co.jp">神奈川中央交通</a></li>
+				<li><a href="http://www.kanachu.co.jp/dia/">神奈中バス 時刻表・運賃案内</a></li>
+			</ul>
+		<!-- /headNavi --></div>
+		<div id="globalNavi">
+			<ul>
+				
+					<li><a href="top"><img src="/pc/images/navi01.gif" width="190" height="33" alt="トップ"  class="rollover" /></a></li>
+				
+
+				
+					<li><a href="searchapproachinfo"><img src="/pc/images/navi02on.gif" width="190" height="33" alt="接近情報" /></a></li>
+				
+
+				
+					<li><a href="/OERtransfer/searchtransferinfo"><img src="/pc/images/navi03.gif" width="190" height="33" alt="バス鉄道乗継案内" class="rollover" /></a></li>
+				
+
+				
+					<li><a href="/pc/usage.html"><img src="/pc/images/navi04.gif" width="190" height="33" alt="使い方ガイド" class="rollover" /></a></li>
+				
+
+			</ul>
+		<!-- /globalNavi --></div>
+
+	<!-- /header --></div>
+<!-- /headWrap --></div>
+
+<div id="wrapper" class="displayRouteInfo">
+<div id="contents">
+		<div id="main">
+			
+			<p class="breadcrumb"><a href="top">トップ</a> &gt; <a href="searchapproachinfo">接近情報</a> &gt; <a href="displayapproachinfo?fNO=19001&amp;tNO=19002">接近情報検索結果</a> &gt; <em>バスルート表示</em></p>
+			
+			<div class="hgroup01">
+				<h1 class="heading1">バスルート表示</h1>
+				
+				<p class="btn01"><a href="searchapproachinfo?fNM=%8C%FA%96%D8%83%6F%83%58%83%5A%83%93%83%5E%81%5B&amp;tNM=%96%7B%8C%FA%96%D8%89%77"><img src="/pc/images/bt03.gif" width="114" height="27" alt="再検索する" class="rollover" /></a></p>
+				
+			<!-- /hgroup01 --></div>
+			<div class="wrap bgArrow">
+				<div class="frameBox01">
+					<h2 class="heading2">乗車バス停</h2>
+					<p class="btn01">
+
+						<a href="https://transfer-cloud.navitime.biz/kanachu/trips?external-departure-busstop=19001&external-arrival-busstop=19002"><img src="/pc/images/bt05.gif" width="118" height="25" alt="時刻表" class="mr rollover" /></a>
+						<a href="https://transfer-cloud.navitime.biz/kanachu/courses?external-busstop=19001#pole-map"><img src="/pc/images/bt06.gif" width="118" height="25" alt="地図情報" class="rollover" /></a>
+					</p>
+					<p class="text">厚木バスセンター</p>
+				<!-- /frameBox01 --></div>
+				<div class="frameBox02">
+					<h2 class="heading2">降車バス停</h2>
+					<p class="text">本厚木駅</p>
+				<!-- /frameBox01 --></div>
+			<!-- /wrap --></div>
+
+			<div class="frameArea01">
+				<div class="inner1">
+					<div class="inner2 pa01">
+						<h2 class="heading2-1">厚09系統　宿原入口行き そりだハイツ前経由 のバスルートです。</h2>
+						<p><input type="checkbox" id="reloadFlg" value="1" /><label for="check01">自動更新しない</label></p>
+
+						
+							<div class="wrapRoute column2">
+						
+
+								<div class="col1">
+
+						
+									<div class="placeArea01">
+							
+										<div class="inner_busstop departure">
+											<p>厚木バスセンター</p>
+											
+										<!-- /inner_busstop --></div>
+									<!-- /placeArea01 --></div>
+						
+									<div class="placeArea01">
+							
+										<div class="inner_arrow">
+										<!-- /inner_arrow --></div>
+									
+										<div class="inner_busstop destination">
+											<p>本厚木駅</p>
+											
+										<!-- /inner_busstop --></div>
+									<!-- /placeArea01 --></div>
+						
+									<div class="placeArea01">
+							
+										<div class="inner_arrow nowBetween">
+											<p class="ic">あ84</p>
+										<!-- /inner_arrow --></div>
+									
+										<div class="inner_busstop">
+											<p>あつぎ大通り</p>
+											
+										<!-- /inner_busstop --></div>
+									<!-- /placeArea01 --></div>
+						
+									<div class="placeArea01">
+							
+										<div class="inner_arrow">
+										<!-- /inner_arrow --></div>
+									
+										<div class="inner_busstop">
+											<p>市役所入口</p>
+											
+										<!-- /inner_busstop --></div>
+									<!-- /placeArea01 --></div>
+						
+									<div class="placeArea01">
+							
+										<div class="inner_arrow">
+										<!-- /inner_arrow --></div>
+									
+										<div class="inner_busstop">
+											<p>税務署入口</p>
+											
+										<!-- /inner_busstop --></div>
+									<!-- /placeArea01 --></div>
+						
+									<div class="placeArea01">
+							
+										<div class="inner_arrow">
+										<!-- /inner_arrow --></div>
+									
+										<div class="inner_busstop">
+											<p>市立病院前</p>
+											
+										<!-- /inner_busstop --></div>
+									<!-- /placeArea01 --></div>
+						
+									<div class="placeArea01">
+							
+										<div class="inner_arrow">
+										<!-- /inner_arrow --></div>
+									
+										<div class="inner_busstop">
+											<p>木売場</p>
+											
+										<!-- /inner_busstop --></div>
+									<!-- /placeArea01 --></div>
+						
+									<div class="placeArea01">
+							
+										<div class="inner_arrow">
+										<!-- /inner_arrow --></div>
+									
+										<div class="inner_busstop">
+											<p>三家入口</p>
+											
+										<!-- /inner_busstop --></div>
+									<!-- /placeArea01 --></div>
+						
+										<!-- /col1 --></div>
+										<div class="col1">
+								
+									<div class="placeArea01">
+							
+										<div class="inner_busstop">
+											<p>そりだハイツ前</p>
+											
+										<!-- /inner_busstop --></div>
+									<!-- /placeArea01 --></div>
+						
+									<div class="placeArea01">
+							
+										<div class="inner_arrow">
+										<!-- /inner_arrow --></div>
+									
+										<div class="inner_busstop">
+											<p>睦合東中学校入口</p>
+											
+										<!-- /inner_busstop --></div>
+									<!-- /placeArea01 --></div>
+						
+									<div class="placeArea01">
+							
+										<div class="inner_arrow">
+										<!-- /inner_arrow --></div>
+									
+										<div class="inner_busstop">
+											<p>三田十日市場</p>
+											
+										<!-- /inner_busstop --></div>
+									<!-- /placeArea01 --></div>
+						
+									<div class="placeArea01">
+							
+										<div class="inner_arrow">
+										<!-- /inner_arrow --></div>
+									
+										<div class="inner_busstop">
+											<p>東河原入口</p>
+											
+										<!-- /inner_busstop --></div>
+									<!-- /placeArea01 --></div>
+						
+									<div class="placeArea01">
+							
+										<div class="inner_arrow">
+										<!-- /inner_arrow --></div>
+									
+										<div class="inner_busstop">
+											<p>屋際</p>
+											
+										<!-- /inner_busstop --></div>
+									<!-- /placeArea01 --></div>
+						
+									<div class="placeArea01">
+							
+										<div class="inner_arrow">
+										<!-- /inner_arrow --></div>
+									
+										<div class="inner_busstop">
+											<p>山王坂上</p>
+											
+										<!-- /inner_busstop --></div>
+									<!-- /placeArea01 --></div>
+						
+									<div class="placeArea01">
+							
+										<div class="inner_arrow">
+										<!-- /inner_arrow --></div>
+									
+										<div class="inner_busstop">
+											<p>宿原入口</p>
+											
+										<!-- /inner_busstop --></div>
+									<!-- /placeArea01 --></div>
+						
+							<!-- /col1 --></div>
+						<!-- /wrapRoute --></div>
+					<!-- /inner2 --></div>
+				<!-- /inner1 --></div>
+			<!-- /frameArea01 --></div>
+			
+			<p class="mt20 center"><a href="javascript:window.close()"><img src="/pc/images/bt01.gif" width="147" height="29" alt="前のページへ戻る" class="rollover" /></a></p>
+			
+		<!-- /main --></div>
+		<div id="aside">
+			<!-- advertisement-->
+			<script type="text/javascript">
+var microadCompass = microadCompass || {};
+microadCompass.queue = microadCompass.queue || [];
+</script>
+<script type="text/javascript" charset="UTF-8" src="//j.microad.net/js/compass.js" onload="new microadCompass.AdInitializer().initialize();" async></script><div id="f26f0274e292c24ad6b1188c683014ca" >
+    <script type="text/javascript">
+        microadCompass.queue.push({
+            "spot": "f26f0274e292c24ad6b1188c683014ca"
+        });
+    </script>
+</div>
+			<p class="mt10"></p>
+			<script type="text/javascript">
+var microadCompass = microadCompass || {};
+microadCompass.queue = microadCompass.queue || [];
+</script>
+<script type="text/javascript" charset="UTF-8" src="//j.microad.net/js/compass.js" onload="new microadCompass.AdInitializer().initialize();" async></script><div id="d20409aa6969c562cba5e4d0ebc7a2d5" >
+    <script type="text/javascript">
+        microadCompass.queue.push({
+            "spot": "d20409aa6969c562cba5e4d0ebc7a2d5"
+        });
+    </script>
+</div>
+			<p class="mt10"></p>
+			<script type="text/javascript">
+var microadCompass = microadCompass || {};
+microadCompass.queue = microadCompass.queue || [];
+</script>
+<script type="text/javascript" charset="UTF-8" src="//j.microad.net/js/compass.js" onload="new microadCompass.AdInitializer().initialize();" async></script><div id="a31219a2862c9965faa49ff4895e6107" >
+    <script type="text/javascript">
+        microadCompass.queue.push({
+            "spot": "a31219a2862c9965faa49ff4895e6107"
+        });
+    </script>
+</div>
+			<p class="mt10"></p>
+			<script type="text/javascript">
+var microadCompass = microadCompass || {};
+microadCompass.queue = microadCompass.queue || [];
+</script>
+<script type="text/javascript" charset="UTF-8" src="//j.microad.net/js/compass.js" onload="new microadCompass.AdInitializer().initialize();" async></script><div id="659bf388befc498309da9f136b971e88" >
+    <script type="text/javascript">
+        microadCompass.queue.push({
+            "spot": "659bf388befc498309da9f136b971e88"
+        });
+    </script>
+</div>
+			<p class="mt10"></p>
+			<script type="text/javascript">
+var microadCompass = microadCompass || {};
+microadCompass.queue = microadCompass.queue || [];
+</script>
+<script type="text/javascript" charset="UTF-8" src="//j.microad.net/js/compass.js" onload="new microadCompass.AdInitializer().initialize();" async></script><div id="8f09c230644b596582deea063437bb78" >
+    <script type="text/javascript">
+        microadCompass.queue.push({
+            "spot": "8f09c230644b596582deea063437bb78"
+        });
+    </script>
+</div>
+			<p class="mt10"></p>
+			<script type="text/javascript">
+var microadCompass = microadCompass || {};
+microadCompass.queue = microadCompass.queue || [];
+</script>
+<script type="text/javascript" charset="UTF-8" src="//j.microad.net/js/compass.js" onload="new microadCompass.AdInitializer().initialize();" async></script><div id="832fce4b8b6cddf5a806bd8ff99d7dea" >
+    <script type="text/javascript">
+        microadCompass.queue.push({
+            "spot": "832fce4b8b6cddf5a806bd8ff99d7dea"
+        });
+    </script>
+</div>
+			<p class="mt10"></p>
+			<!-- /advertisement-->
+			<div id="exceptAd">
+			
+			<!-- /exceptAd --></div>
+		<!-- /aside --></div>
+	<!-- /contents --></div>
+<!-- /wrapper --></div>
+
+
+
+
+
+
+<div id="footWrap" class="displayRouteInfo">
+	<div id="footInner">
+		<div id="footer">
+			<p class="pagetop"><a href="#header">ページトップへ戻る</a></p>
+
+			<div id="footNavi">
+				<ul>
+					<li><a href="https://www.kanachu.co.jp/rule.html">サイト利用規程</a></li>
+					<li><a href="https://www.kanachu.co.jp/contact/">お問い合わせ</a></li>
+					<li><a href="https://www.kanachu.co.jp/emergency.html">緊急事態発生時通報のお願い</a></li>
+				</ul>
+			<!-- /footNavi --></div>
+
+			<p id="copyright">Copyright (c) KANACHU All Rights Reserved</p>
+		<!-- /footer --></div>
+	<!-- /footInner --></div>
+<!-- /footWrap --></div>
+
+
+<!-- advertisement-->
+<div id="float-bnr" style="position: fixed; z-index: 10000; left: 0px; bottom: 0px; width: 100%; left: 50%; transform: translate(-50%, 0);  display: block; padding-bottom:1.5px; background: rgba(40, 40, 40, 0.30); filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr=#50000000,EndColorStr=#50000000);">
+<div style="position:relative;display:block;width:728px;height:90px;margin:10px auto 3px; background:#FFF; top:0;">
+
+<script type="text/javascript">
+var microadCompass = microadCompass || {};
+microadCompass.queue = microadCompass.queue || [];
+</script>
+<script type="text/javascript" charset="UTF-8" src="//j.microad.net/js/compass.js" onload="new microadCompass.AdInitializer().initialize();" async></script><div id="b2aa1a34ff11d572be645a09d4b48846" >
+    <script type="text/javascript">
+        microadCompass.queue.push({
+            "spot": "b2aa1a34ff11d572be645a09d4b48846"
+        });
+    </script>
+</div>
+
+</div>
+
+<div id="bnr-close" style="position:absolute; top:0; right:calc(50% - 400px); width:24px; height:24px; border: 1px solid rgba(255, 255, 255, 0.3);background:rgba(0,0,0,.5); background:#000¥9; color: #fff;cursor: pointer;font-size: 24px;line-height: 24px;text-align: center;">&times;</div>
+<script type="text/javascript">
+
+document.getElementById('bnr-close').addEventListener('click', function(){ document.getElementById('float-bnr').style.display = 'none'; });
+
+</script>
+
+</div>
+<!-- /advertisement-->
+</body>
+</html>
+

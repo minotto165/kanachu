@@ -1,0 +1,1497 @@
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Language" content="ja" />
+<meta name="robots" content="index,follow" />
+<title>厚木バスセンター〜本厚木駅 接近情報検索結果 | 接近情報検索 | 神奈中バスロケ</title>
+<meta name="Description" content="神奈中路線の接近情報の検索結果です。系統、行先、経由、所要時分、運賃が確認できます。" />
+<meta name="Keywords" content="神奈中,バスロケ,バス停,接近情報,結果,PC" />
+
+<link rel="stylesheet" type="text/css" href="/pc/css/reset.css" media="all" />
+<link rel="stylesheet" type="text/css" href="/pc/css/common.css" media="all" />
+<script type="text/javascript" src="/pc/js/jquery-1.7.2.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/pc/js/common.js" charset="UTF-8"></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STSQH0MF5N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-STSQH0MF5N');
+</script>
+
+<script language="JavaScript">
+<!--
+function doAction1(){
+aForm=document.form1;
+aForm.target="_top";
+aForm.submit();
+}
+//-->
+</script>
+
+</head>
+<body>
+
+
+
+
+
+<div id="headWrap">
+	<div id="header">
+
+		<p id="logo"><a href="top"><img src="/pc/images/logo.gif" alt="Kanachu 神奈中バスロケーション 響きあう、明日へ" width="283" height="44" /></a></p>
+		<div id="headNavi">
+			<ul>
+				<li><a href="http://www.kanachu.co.jp">神奈川中央交通</a></li>
+				<li><a href="http://www.kanachu.co.jp/dia/">神奈中バス 時刻表・運賃案内</a></li>
+			</ul>
+		<!-- /headNavi --></div>
+		<div id="globalNavi">
+			<ul>
+				
+					<li><a href="top"><img src="/pc/images/navi01.gif" width="190" height="33" alt="トップ"  class="rollover" /></a></li>
+				
+
+				
+					<li><a href="searchapproachinfo"><img src="/pc/images/navi02on.gif" width="190" height="33" alt="接近情報" /></a></li>
+				
+
+				
+					<li><a href="/OERtransfer/searchtransferinfo"><img src="/pc/images/navi03.gif" width="190" height="33" alt="バス鉄道乗継案内" class="rollover" /></a></li>
+				
+
+				
+					<li><a href="/pc/usage.html"><img src="/pc/images/navi04.gif" width="190" height="33" alt="使い方ガイド" class="rollover" /></a></li>
+				
+
+			</ul>
+		<!-- /globalNavi --></div>
+
+	<!-- /header --></div>
+<!-- /headWrap --></div>
+
+<div id="wrapper" class="displayApproachInfo">
+<div id="contents">
+		<div id="main">
+			
+			<p class="breadcrumb"><a href="top">トップ</a> &gt; <a href="searchapproachinfo">接近情報</a> &gt; <em>接近情報検索結果</em></p>
+			
+			<div class="hgroup01">
+				<h1 class="heading1">接近情報検索結果</h1>
+				
+				<p class="btn01"><a href="sendmail?fNO=19001&amp;tNO=19002" target="_blank"><img src="/pc/images/bt02.gif" width="114" height="27" alt="携帯へ送る" class="mr rollover" /></a><a href="javascript:doAction1()"><img src="/pc/images/bt03.gif" width="114" height="27" alt="再検索する" class="rollover" /></a></p>
+				
+			<!-- /hgroup01 --></div>
+			
+			<div class="wrap">
+				<div class="frameBox01">
+					<h2 class="heading2">乗車バス停</h2>
+					<p class="btn01">
+
+						<a href="https://transfer-cloud.navitime.biz/kanachu/trips?external-departure-busstop=19001&external-arrival-busstop=19002"><img src="/pc/images/bt05.gif" width="118" height="25" alt="時刻表" class="mr rollover" /></a>
+						<a href="https://transfer-cloud.navitime.biz/kanachu/courses?external-busstop=19001#pole-map"><img src="/pc/images/bt06.gif" width="118" height="25" alt="地図情報" class="rollover" /></a>
+					</p>
+					<p class="text">厚木バスセンター</p>
+				<!-- /frameBox01 --></div>
+				<div class="frameBox02">
+					<h2 class="heading2">降車バス停</h2>
+					<p class="text">本厚木駅</p>
+				<!-- /frameBox01 --></div>
+				<p class="btn02">
+				<a href="displayapproachinfo?fNO=19002&amp;tNO=19001">
+				<img src="/pc/images/bt04.gif" width="77" height="66" alt="入れ替えて検索" class="rollover" /></a></p>
+			<!-- /wrap --></div>
+
+			<div class="frameArea01">
+				<div class="inner1">
+					<div class="inner2 pa01">
+					
+						<h2 class="heading2-1">厚木バスセンターの接近情報です。</h2>
+						<p>系統番号、経由地、所要時分をご確認の上、御利用下さい</p>
+					
+						
+						<div class="hgroup01">
+							<h3 class="heading3">早い順 1</h3>
+							<p class="btn02"><a href="javascript:document.location.reload()"><img src="/pc/images/bt07.gif" width="130" height="26" alt="再読み込み" class="rollover" /></a></p>
+						<!-- /hgroup01 --></div>
+						<div class="wrap">
+							<div class="col01">
+								<h4 class="heading4"><span>バスの系統と、行き先、経由</span></h4>
+								<table class="table01">
+									<tbody>
+										<tr>
+											<th><span>系統</span></th>
+											<td><span class="point">厚09
+												
+												<a href="displayrouteinfo?corpno=0&amp;routeno=19250&amp;rtripkbn=1&amp;fromStopNo=19001&amp;toStopNo=19002&amp;routeName=%8C%FA09&amp;keikaName=%82%BB%82%E8%82%BE%83%6E%83%43%83%63%91%4F&amp;lastStopName=%8F%68%8C%B4%93%FC%8C%FB&amp;fromStopRPS=1&amp;toStopRPS=2" target="_blank"><img src="/pc/images/bt08.gif" width="124" height="21" alt="バスルートを表示" class="btn01 rollover" /></a></span></td>
+										</tr>
+										<tr>
+											<th><span>行き先</span></th>
+											<td><span class="point">宿原入口</span></td>
+										</tr>
+										<tr>
+											<th><span>経由</span></th>
+											<td><span class="point">そりだハイツ前</span></td>
+										</tr>
+											
+										<tr>
+											<th><span>車両番号</span></th>
+											<td><span class="point">あ84
+																	
+																	
+																	※
+																	
+																	
+																	</span></td>
+										</tr>
+											
+									</tbody>
+								</table>
+								
+								<h4 class="heading4"><span>乗車バス停から降車バス停までの所要時分</span></h4>
+								<table class="table01">
+									<tbody>
+										<tr>
+											<th><span>所要時分</span></th>
+											<td><span class="point">
+											
+											2分
+											
+												（通常）
+											
+											</span></td>
+										</tr>
+									</tbody>
+								</table>
+								<h4 class="heading4"><span>運賃(大人)</span></h4>
+								<table class="table04">
+									<tbody>
+										<tr>
+											<th><span>現金</span></th>
+											<td><span class="point">
+													
+														230円
+													
+												</span>
+											</td>
+											<th><span>IC</span></th>
+											<td><span class="point">
+													
+														230円
+													
+												</span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							
+								<p>※印はノンステップバスです。 ★印はワンステップバスです。<br />
+								<!--  Ｌ印はリフト付きバスです。 -->Ｔ印はＴｗｉｎＬｉｎｅｒです。<br />
+								運行状況により、所要時分は異なります。目安としてお考えください。<br />
+								<span class=color01>「この便は、正確な情報が提供出来ていない可能性があります。」と表示されている際は、「車載器等の故障」、「運行予定の車両と別の車両で運行中」、「大幅な遅延」等の可能性があります。担当営業所までお問い合わせください。</span></p>
+							<!-- /col01 --></div>
+
+							<div class="col02">
+								<div class="hgroup01">
+									<h4 class="mt10"><img src="/pc/images/ti02.gif" width="364" height="36" alt="接近情報" /></h4>
+									<p class="text01">(最終更新 15:28）</p>
+								<!-- /hgroup01 --></div>
+								<div class="frameBox03">
+									<p class="title01">
+									
+										
+													厚木バスセンターを15:30発予定<br/>
+													予定通り発車します
+												
+									
+									</p>
+									
+									<div class="wrap">
+									
+
+									<div class="placeArea01 departure">
+										<div class="inner">
+											
+											<p>
+												
+													<span class="place">
+													<a href="https://transfer-cloud.navitime.biz/kanachu/courses?external-busstop=19001#pole-map" target="_blank">
+													2番のりば
+													</a>
+													</span>
+												
+											
+											厚木バスセンター
+											
+											
+											
+										<!-- /inner1 --></div>
+									<!-- /placeArea01 --></div>
+									<!-- /wrap --></div>
+								<!-- /frameBox03 --></div>
+							<!-- /col02 --></div>
+						<!-- /wrap --></div>					
+						<!-- advertisement-->
+						
+						<p class="mt10"></p>
+						<div class="advertisement-flex">
+							<div class="col01">
+								<script type="text/javascript">
+var microadCompass = microadCompass || {};
+microadCompass.queue = microadCompass.queue || [];
+</script>
+<script type="text/javascript" charset="UTF-8" src="//j.microad.net/js/compass.js" onload="new microadCompass.AdInitializer().initialize();" async></script><div id="1ae19bafdf23ee15a8bca3327233ff96" >
+    <script type="text/javascript">
+        microadCompass.queue.push({
+            "spot": "1ae19bafdf23ee15a8bca3327233ff96"
+        });
+    </script>
+</div>
+							</div>
+							<div class="col02">
+								<script type="text/javascript">
+var microadCompass = microadCompass || {};
+microadCompass.queue = microadCompass.queue || [];
+</script>
+<script type="text/javascript" charset="UTF-8" src="//j.microad.net/js/compass.js" onload="new microadCompass.AdInitializer().initialize();" async></script><div id="3b114d40ef57dbe22a23feb20bd1129d" >
+    <script type="text/javascript">
+        microadCompass.queue.push({
+            "spot": "3b114d40ef57dbe22a23feb20bd1129d"
+        });
+    </script>
+</div>
+							</div>
+						</div>
+						<p class="mt10"></p>
+							<script type="text/javascript">
+var microadCompass = microadCompass || {};
+microadCompass.queue = microadCompass.queue || [];
+</script>
+<script type="text/javascript" charset="UTF-8" src="//j.microad.net/js/compass.js" onload="new microadCompass.AdInitializer().initialize();" async></script><div id="2818a3ebef19444490cfe95e1c559e55" >
+    <script type="text/javascript">
+        microadCompass.queue.push({
+            "spot": "2818a3ebef19444490cfe95e1c559e55"
+        });
+    </script>
+</div>
+						<p class="mt10"></p>
+						
+						<!-- /advertisement-->
+						
+						<div class="hgroup01">
+							<h3 class="heading3">早い順 2</h3>
+							<p class="btn02"><a href="javascript:document.location.reload()"><img src="/pc/images/bt07.gif" width="130" height="26" alt="再読み込み" class="rollover" /></a></p>
+						<!-- /hgroup01 --></div>
+						<div class="wrap">
+							<div class="col01">
+								<h4 class="heading4"><span>バスの系統と、行き先、経由</span></h4>
+								<table class="table01">
+									<tbody>
+										<tr>
+											<th><span>系統</span></th>
+											<td><span class="point">厚12
+												
+												<a href="displayrouteinfo?corpno=0&amp;routeno=19018&amp;rtripkbn=1&amp;fromStopNo=19001&amp;toStopNo=19002&amp;routeName=%8C%FA12&amp;keikaName=%93%CE%94%F6%92%63%92%6E&amp;lastStopName=%82%DC%82%C2%82%A9%82%B0%91%E4&amp;fromStopRPS=1&amp;toStopRPS=2" target="_blank"><img src="/pc/images/bt08.gif" width="124" height="21" alt="バスルートを表示" class="btn01 rollover" /></a></span></td>
+										</tr>
+										<tr>
+											<th><span>行き先</span></th>
+											<td><span class="point">まつかげ台</span></td>
+										</tr>
+										<tr>
+											<th><span>経由</span></th>
+											<td><span class="point">鳶尾団地</span></td>
+										</tr>
+											
+										<tr>
+											<th><span>車両番号</span></th>
+											<td><span class="point">あ127
+																	
+																	
+																	
+																	★
+																	
+																	</span></td>
+										</tr>
+											
+									</tbody>
+								</table>
+								
+								<h4 class="heading4"><span>乗車バス停から降車バス停までの所要時分</span></h4>
+								<table class="table01">
+									<tbody>
+										<tr>
+											<th><span>所要時分</span></th>
+											<td><span class="point">
+											
+											2分
+											
+												（通常）
+											
+											</span></td>
+										</tr>
+									</tbody>
+								</table>
+								<h4 class="heading4"><span>運賃(大人)</span></h4>
+								<table class="table04">
+									<tbody>
+										<tr>
+											<th><span>現金</span></th>
+											<td><span class="point">
+													
+														230円
+													
+												</span>
+											</td>
+											<th><span>IC</span></th>
+											<td><span class="point">
+													
+														230円
+													
+												</span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							
+								<p>※印はノンステップバスです。 ★印はワンステップバスです。<br />
+								<!--  Ｌ印はリフト付きバスです。 -->Ｔ印はＴｗｉｎＬｉｎｅｒです。<br />
+								運行状況により、所要時分は異なります。目安としてお考えください。<br />
+								<span class=color01>「この便は、正確な情報が提供出来ていない可能性があります。」と表示されている際は、「車載器等の故障」、「運行予定の車両と別の車両で運行中」、「大幅な遅延」等の可能性があります。担当営業所までお問い合わせください。</span></p>
+							<!-- /col01 --></div>
+
+							<div class="col02">
+								<div class="hgroup01">
+									<h4 class="mt10"><img src="/pc/images/ti02.gif" width="364" height="36" alt="接近情報" /></h4>
+									<p class="text01">(最終更新 15:28）</p>
+								<!-- /hgroup01 --></div>
+								<div class="frameBox03">
+									<p class="title01">
+									
+										
+													厚木バスセンターを15:30発予定<br/>
+													予定通り発車します
+												
+									
+									</p>
+									
+									<div class="wrap">
+									
+
+									<div class="placeArea01 departure">
+										<div class="inner">
+											
+											<p>
+												
+													<span class="place">
+													<a href="https://transfer-cloud.navitime.biz/kanachu/courses?external-busstop=19001#pole-map" target="_blank">
+													1番のりば
+													</a>
+													</span>
+												
+											
+											厚木バスセンター
+											
+											
+											
+										<!-- /inner1 --></div>
+									<!-- /placeArea01 --></div>
+									<!-- /wrap --></div>
+								<!-- /frameBox03 --></div>
+							<!-- /col02 --></div>
+						<!-- /wrap --></div>					
+						<!-- advertisement-->
+						
+						<!-- /advertisement-->
+						
+						<div class="hgroup01">
+							<h3 class="heading3">早い順 3</h3>
+							<p class="btn02"><a href="javascript:document.location.reload()"><img src="/pc/images/bt07.gif" width="130" height="26" alt="再読み込み" class="rollover" /></a></p>
+						<!-- /hgroup01 --></div>
+						<div class="wrap">
+							<div class="col01">
+								<h4 class="heading4"><span>バスの系統と、行き先、経由</span></h4>
+								<table class="table01">
+									<tbody>
+										<tr>
+											<th><span>系統</span></th>
+											<td><span class="point">厚25
+												
+												<a href="displayrouteinfo?corpno=0&amp;routeno=19030&amp;rtripkbn=1&amp;fromStopNo=19001&amp;toStopNo=19002&amp;routeName=%8C%FA25&amp;keikaName=%97%CE%83%96%8B%75&amp;lastStopName=%8C%FA%96%D8%83%6F%83%58%83%5A%83%93%83%5E%81%5B&amp;fromStopRPS=1&amp;toStopRPS=2" target="_blank"><img src="/pc/images/bt08.gif" width="124" height="21" alt="バスルートを表示" class="btn01 rollover" /></a></span></td>
+										</tr>
+										<tr>
+											<th><span>行き先</span></th>
+											<td><span class="point">厚木バスセンター</span></td>
+										</tr>
+										<tr>
+											<th><span>経由</span></th>
+											<td><span class="point">緑ヶ丘</span></td>
+										</tr>
+											
+										<tr>
+											<th><span>車両番号</span></th>
+											<td><span class="point">あ37
+																	
+																	
+																	※
+																	
+																	
+																	</span></td>
+										</tr>
+											
+									</tbody>
+								</table>
+								
+								<h4 class="heading4"><span>乗車バス停から降車バス停までの所要時分</span></h4>
+								<table class="table01">
+									<tbody>
+										<tr>
+											<th><span>所要時分</span></th>
+											<td><span class="point">
+											
+											2分
+											
+												（通常）
+											
+											</span></td>
+										</tr>
+									</tbody>
+								</table>
+								<h4 class="heading4"><span>運賃(大人)</span></h4>
+								<table class="table04">
+									<tbody>
+										<tr>
+											<th><span>現金</span></th>
+											<td><span class="point">
+													
+														230円
+													
+												</span>
+											</td>
+											<th><span>IC</span></th>
+											<td><span class="point">
+													
+														230円
+													
+												</span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							
+								<p>※印はノンステップバスです。 ★印はワンステップバスです。<br />
+								<!--  Ｌ印はリフト付きバスです。 -->Ｔ印はＴｗｉｎＬｉｎｅｒです。<br />
+								運行状況により、所要時分は異なります。目安としてお考えください。<br />
+								<span class=color01>「この便は、正確な情報が提供出来ていない可能性があります。」と表示されている際は、「車載器等の故障」、「運行予定の車両と別の車両で運行中」、「大幅な遅延」等の可能性があります。担当営業所までお問い合わせください。</span></p>
+							<!-- /col01 --></div>
+
+							<div class="col02">
+								<div class="hgroup01">
+									<h4 class="mt10"><img src="/pc/images/ti02.gif" width="364" height="36" alt="接近情報" /></h4>
+									<p class="text01">(最終更新 15:28）</p>
+								<!-- /hgroup01 --></div>
+								<div class="frameBox03">
+									<p class="title01">
+									
+										
+													厚木バスセンターを15:32発予定<br/>
+													予定通り発車します
+												
+									
+									</p>
+									
+									<div class="wrap">
+									
+
+									<div class="placeArea01 departure">
+										<div class="inner">
+											
+											<p>
+												
+													<span class="place">
+													<a href="https://transfer-cloud.navitime.biz/kanachu/courses?external-busstop=19001#pole-map" target="_blank">
+													8番のりば
+													</a>
+													</span>
+												
+											
+											厚木バスセンター
+											
+											
+											
+										<!-- /inner1 --></div>
+									<!-- /placeArea01 --></div>
+									<!-- /wrap --></div>
+								<!-- /frameBox03 --></div>
+							<!-- /col02 --></div>
+						<!-- /wrap --></div>					
+						<!-- advertisement-->
+						
+						<!-- /advertisement-->
+						
+						<div class="hgroup01">
+							<h3 class="heading3">早い順 4</h3>
+							<p class="btn02"><a href="javascript:document.location.reload()"><img src="/pc/images/bt07.gif" width="130" height="26" alt="再読み込み" class="rollover" /></a></p>
+						<!-- /hgroup01 --></div>
+						<div class="wrap">
+							<div class="col01">
+								<h4 class="heading4"><span>バスの系統と、行き先、経由</span></h4>
+								<table class="table01">
+									<tbody>
+										<tr>
+											<th><span>系統</span></th>
+											<td><span class="point">厚89
+												
+												<a href="displayrouteinfo?corpno=0&amp;routeno=19141&amp;rtripkbn=1&amp;fromStopNo=19001&amp;toStopNo=19002&amp;routeName=%8C%FA89&amp;keikaName=%90%5F%93%DE%90%EC%8D%48%89%C8%91%E5%8A%77%91%4F&amp;lastStopName=%93%CE%94%F6%92%63%92%6E&amp;fromStopRPS=1&amp;toStopRPS=2" target="_blank"><img src="/pc/images/bt08.gif" width="124" height="21" alt="バスルートを表示" class="btn01 rollover" /></a></span></td>
+										</tr>
+										<tr>
+											<th><span>行き先</span></th>
+											<td><span class="point">鳶尾団地</span></td>
+										</tr>
+										<tr>
+											<th><span>経由</span></th>
+											<td><span class="point">神奈川工科大学前</span></td>
+										</tr>
+											
+										<tr>
+											<th><span>車両番号</span></th>
+											<td><span class="point">き181
+																	
+																	
+																	※
+																	
+																	
+																	</span></td>
+										</tr>
+											
+									</tbody>
+								</table>
+								
+								<h4 class="heading4"><span>乗車バス停から降車バス停までの所要時分</span></h4>
+								<table class="table01">
+									<tbody>
+										<tr>
+											<th><span>所要時分</span></th>
+											<td><span class="point">
+											
+											2分
+											
+												（通常）
+											
+											</span></td>
+										</tr>
+									</tbody>
+								</table>
+								<h4 class="heading4"><span>運賃(大人)</span></h4>
+								<table class="table04">
+									<tbody>
+										<tr>
+											<th><span>現金</span></th>
+											<td><span class="point">
+													
+														230円
+													
+												</span>
+											</td>
+											<th><span>IC</span></th>
+											<td><span class="point">
+													
+														230円
+													
+												</span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							
+								<p>※印はノンステップバスです。 ★印はワンステップバスです。<br />
+								<!--  Ｌ印はリフト付きバスです。 -->Ｔ印はＴｗｉｎＬｉｎｅｒです。<br />
+								運行状況により、所要時分は異なります。目安としてお考えください。<br />
+								<span class=color01>「この便は、正確な情報が提供出来ていない可能性があります。」と表示されている際は、「車載器等の故障」、「運行予定の車両と別の車両で運行中」、「大幅な遅延」等の可能性があります。担当営業所までお問い合わせください。</span></p>
+							<!-- /col01 --></div>
+
+							<div class="col02">
+								<div class="hgroup01">
+									<h4 class="mt10"><img src="/pc/images/ti02.gif" width="364" height="36" alt="接近情報" /></h4>
+									<p class="text01">(最終更新 15:28）</p>
+								<!-- /hgroup01 --></div>
+								<div class="frameBox03">
+									<p class="title01">
+									
+										
+												厚木バスセンターを15:35発予定
+											
+											
+										
+									
+									</p>
+									
+									<div class="wrap">
+									
+
+									<div class="placeArea01 departure">
+										<div class="inner">
+											
+											<p>
+												
+													<span class="place">
+													<a href="https://transfer-cloud.navitime.biz/kanachu/courses?external-busstop=19001#pole-map" target="_blank">
+													1番のりば
+													</a>
+													</span>
+												
+											
+											厚木バスセンター
+											
+											
+											
+										<!-- /inner1 --></div>
+									<!-- /placeArea01 --></div>
+									<!-- /wrap --></div>
+								<!-- /frameBox03 --></div>
+							<!-- /col02 --></div>
+						<!-- /wrap --></div>					
+						<!-- advertisement-->
+						
+						<!-- /advertisement-->
+						
+						<div class="hgroup01">
+							<h3 class="heading3">早い順 5</h3>
+							<p class="btn02"><a href="javascript:document.location.reload()"><img src="/pc/images/bt07.gif" width="130" height="26" alt="再読み込み" class="rollover" /></a></p>
+						<!-- /hgroup01 --></div>
+						<div class="wrap">
+							<div class="col01">
+								<h4 class="heading4"><span>バスの系統と、行き先、経由</span></h4>
+								<table class="table01">
+									<tbody>
+										<tr>
+											<th><span>系統</span></th>
+											<td><span class="point">厚02
+												
+												<a href="displayrouteinfo?corpno=0&amp;routeno=19004&amp;rtripkbn=1&amp;fromStopNo=19001&amp;toStopNo=19002&amp;routeName=%8C%FA02&amp;keikaName=%93%63%91%E3&amp;lastStopName=%94%BC%8C%B4&amp;fromStopRPS=1&amp;toStopRPS=2" target="_blank"><img src="/pc/images/bt08.gif" width="124" height="21" alt="バスルートを表示" class="btn01 rollover" /></a></span></td>
+										</tr>
+										<tr>
+											<th><span>行き先</span></th>
+											<td><span class="point">半原</span></td>
+										</tr>
+										<tr>
+											<th><span>経由</span></th>
+											<td><span class="point">田代</span></td>
+										</tr>
+											
+										<tr>
+											<th><span>車両番号</span></th>
+											<td><span class="point">き182
+																	
+																	
+																	※
+																	
+																	
+																	</span></td>
+										</tr>
+											
+									</tbody>
+								</table>
+								
+								<h4 class="heading4"><span>乗車バス停から降車バス停までの所要時分</span></h4>
+								<table class="table01">
+									<tbody>
+										<tr>
+											<th><span>所要時分</span></th>
+											<td><span class="point">
+											
+											2分
+											
+												（通常）
+											
+											</span></td>
+										</tr>
+									</tbody>
+								</table>
+								<h4 class="heading4"><span>運賃(大人)</span></h4>
+								<table class="table04">
+									<tbody>
+										<tr>
+											<th><span>現金</span></th>
+											<td><span class="point">
+													
+														230円
+													
+												</span>
+											</td>
+											<th><span>IC</span></th>
+											<td><span class="point">
+													
+														230円
+													
+												</span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							
+								<p>※印はノンステップバスです。 ★印はワンステップバスです。<br />
+								<!--  Ｌ印はリフト付きバスです。 -->Ｔ印はＴｗｉｎＬｉｎｅｒです。<br />
+								運行状況により、所要時分は異なります。目安としてお考えください。<br />
+								<span class=color01>「この便は、正確な情報が提供出来ていない可能性があります。」と表示されている際は、「車載器等の故障」、「運行予定の車両と別の車両で運行中」、「大幅な遅延」等の可能性があります。担当営業所までお問い合わせください。</span></p>
+							<!-- /col01 --></div>
+
+							<div class="col02">
+								<div class="hgroup01">
+									<h4 class="mt10"><img src="/pc/images/ti02.gif" width="364" height="36" alt="接近情報" /></h4>
+									<p class="text01">(最終更新 15:28）</p>
+								<!-- /hgroup01 --></div>
+								<div class="frameBox03">
+									<p class="title01">
+									
+										
+												厚木バスセンターを15:45発予定
+											
+											
+										
+									
+									</p>
+									
+									<div class="wrap">
+									
+
+									<div class="placeArea01 departure">
+										<div class="inner">
+											
+											<p>
+												
+													<span class="place">
+													<a href="https://transfer-cloud.navitime.biz/kanachu/courses?external-busstop=19001#pole-map" target="_blank">
+													1番のりば
+													</a>
+													</span>
+												
+											
+											厚木バスセンター
+											
+											
+											
+										<!-- /inner1 --></div>
+									<!-- /placeArea01 --></div>
+									<!-- /wrap --></div>
+								<!-- /frameBox03 --></div>
+							<!-- /col02 --></div>
+						<!-- /wrap --></div>					
+						<!-- advertisement-->
+						
+						<!-- /advertisement-->
+						
+						<div class="hgroup01">
+							<h3 class="heading3">早い順 6</h3>
+							<p class="btn02"><a href="javascript:document.location.reload()"><img src="/pc/images/bt07.gif" width="130" height="26" alt="再読み込み" class="rollover" /></a></p>
+						<!-- /hgroup01 --></div>
+						<div class="wrap">
+							<div class="col01">
+								<h4 class="heading4"><span>バスの系統と、行き先、経由</span></h4>
+								<table class="table01">
+									<tbody>
+										<tr>
+											<th><span>系統</span></th>
+											<td><span class="point">厚26
+												
+												<a href="displayrouteinfo?corpno=0&amp;routeno=19031&amp;rtripkbn=1&amp;fromStopNo=19001&amp;toStopNo=19002&amp;routeName=%8C%FA26&amp;keikaName=%89%A9%8B%E0%8C%B4&amp;lastStopName=%93%8C%8B%9E%8D%48%8C%7C%91%E5%8A%77&amp;fromStopRPS=1&amp;toStopRPS=2" target="_blank"><img src="/pc/images/bt08.gif" width="124" height="21" alt="バスルートを表示" class="btn01 rollover" /></a></span></td>
+										</tr>
+										<tr>
+											<th><span>行き先</span></th>
+											<td><span class="point">東京工芸大学</span></td>
+										</tr>
+										<tr>
+											<th><span>経由</span></th>
+											<td><span class="point">黄金原</span></td>
+										</tr>
+											
+										<tr>
+											<th><span>車両番号</span></th>
+											<td><span class="point">き129
+																	
+																	
+																	※
+																	
+																	
+																	</span></td>
+										</tr>
+											
+									</tbody>
+								</table>
+								
+								<h4 class="heading4"><span>乗車バス停から降車バス停までの所要時分</span></h4>
+								<table class="table01">
+									<tbody>
+										<tr>
+											<th><span>所要時分</span></th>
+											<td><span class="point">
+											
+											2分
+											
+												（通常）
+											
+											</span></td>
+										</tr>
+									</tbody>
+								</table>
+								<h4 class="heading4"><span>運賃(大人)</span></h4>
+								<table class="table04">
+									<tbody>
+										<tr>
+											<th><span>現金</span></th>
+											<td><span class="point">
+													
+														230円
+													
+												</span>
+											</td>
+											<th><span>IC</span></th>
+											<td><span class="point">
+													
+														230円
+													
+												</span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							
+								<p>※印はノンステップバスです。 ★印はワンステップバスです。<br />
+								<!--  Ｌ印はリフト付きバスです。 -->Ｔ印はＴｗｉｎＬｉｎｅｒです。<br />
+								運行状況により、所要時分は異なります。目安としてお考えください。<br />
+								<span class=color01>「この便は、正確な情報が提供出来ていない可能性があります。」と表示されている際は、「車載器等の故障」、「運行予定の車両と別の車両で運行中」、「大幅な遅延」等の可能性があります。担当営業所までお問い合わせください。</span></p>
+							<!-- /col01 --></div>
+
+							<div class="col02">
+								<div class="hgroup01">
+									<h4 class="mt10"><img src="/pc/images/ti02.gif" width="364" height="36" alt="接近情報" /></h4>
+									<p class="text01">(最終更新 15:28）</p>
+								<!-- /hgroup01 --></div>
+								<div class="frameBox03">
+									<p class="title01">
+									
+										
+												厚木バスセンターを15:50発予定
+											
+											
+										
+									
+									</p>
+									
+									<div class="wrap">
+									
+
+									<div class="placeArea01 departure">
+										<div class="inner">
+											
+											<p>
+												
+													<span class="place">
+													<a href="https://transfer-cloud.navitime.biz/kanachu/courses?external-busstop=19001#pole-map" target="_blank">
+													7番のりば
+													</a>
+													</span>
+												
+											
+											厚木バスセンター
+											
+											
+											
+										<!-- /inner1 --></div>
+									<!-- /placeArea01 --></div>
+									<!-- /wrap --></div>
+								<!-- /frameBox03 --></div>
+							<!-- /col02 --></div>
+						<!-- /wrap --></div>					
+						<!-- advertisement-->
+						
+						<!-- /advertisement-->
+						
+						<div class="hgroup01">
+							<h3 class="heading3">早い順 7</h3>
+							<p class="btn02"><a href="javascript:document.location.reload()"><img src="/pc/images/bt07.gif" width="130" height="26" alt="再読み込み" class="rollover" /></a></p>
+						<!-- /hgroup01 --></div>
+						<div class="wrap">
+							<div class="col01">
+								<h4 class="heading4"><span>バスの系統と、行き先、経由</span></h4>
+								<table class="table01">
+									<tbody>
+										<tr>
+											<th><span>系統</span></th>
+											<td><span class="point">厚08
+												
+												<a href="displayrouteinfo?corpno=0&amp;routeno=19014&amp;rtripkbn=1&amp;fromStopNo=19001&amp;toStopNo=19002&amp;routeName=%8C%FA08&amp;keikaName=&amp;lastStopName=%89%BA%89%AC%96%EC%8E%D4%8C%C9%91%4F&amp;fromStopRPS=1&amp;toStopRPS=2" target="_blank"><img src="/pc/images/bt08.gif" width="124" height="21" alt="バスルートを表示" class="btn01 rollover" /></a></span></td>
+										</tr>
+										<tr>
+											<th><span>行き先</span></th>
+											<td><span class="point">下荻野車庫前</span></td>
+										</tr>
+										<tr>
+											<th><span>経由</span></th>
+											<td><span class="point"></span></td>
+										</tr>
+											
+										<tr>
+											<th><span>車両番号</span></th>
+											<td><span class="point">あ39
+																	
+																	
+																	※
+																	
+																	
+																	</span></td>
+										</tr>
+											
+									</tbody>
+								</table>
+								
+								<h4 class="heading4"><span>乗車バス停から降車バス停までの所要時分</span></h4>
+								<table class="table01">
+									<tbody>
+										<tr>
+											<th><span>所要時分</span></th>
+											<td><span class="point">
+											
+											2分
+											
+												（通常）
+											
+											</span></td>
+										</tr>
+									</tbody>
+								</table>
+								<h4 class="heading4"><span>運賃(大人)</span></h4>
+								<table class="table04">
+									<tbody>
+										<tr>
+											<th><span>現金</span></th>
+											<td><span class="point">
+													
+														230円
+													
+												</span>
+											</td>
+											<th><span>IC</span></th>
+											<td><span class="point">
+													
+														230円
+													
+												</span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							
+								<p>※印はノンステップバスです。 ★印はワンステップバスです。<br />
+								<!--  Ｌ印はリフト付きバスです。 -->Ｔ印はＴｗｉｎＬｉｎｅｒです。<br />
+								運行状況により、所要時分は異なります。目安としてお考えください。<br />
+								<span class=color01>「この便は、正確な情報が提供出来ていない可能性があります。」と表示されている際は、「車載器等の故障」、「運行予定の車両と別の車両で運行中」、「大幅な遅延」等の可能性があります。担当営業所までお問い合わせください。</span></p>
+							<!-- /col01 --></div>
+
+							<div class="col02">
+								<div class="hgroup01">
+									<h4 class="mt10"><img src="/pc/images/ti02.gif" width="364" height="36" alt="接近情報" /></h4>
+									<p class="text01">(最終更新 15:28）</p>
+								<!-- /hgroup01 --></div>
+								<div class="frameBox03">
+									<p class="title01">
+									
+										
+												厚木バスセンターを15:55発予定
+											
+											
+										
+									
+									</p>
+									
+									<div class="wrap">
+									
+
+									<div class="placeArea01 departure">
+										<div class="inner">
+											
+											<p>
+												
+													<span class="place">
+													<a href="https://transfer-cloud.navitime.biz/kanachu/courses?external-busstop=19001#pole-map" target="_blank">
+													2番のりば
+													</a>
+													</span>
+												
+											
+											厚木バスセンター
+											
+											
+											
+										<!-- /inner1 --></div>
+									<!-- /placeArea01 --></div>
+									<!-- /wrap --></div>
+								<!-- /frameBox03 --></div>
+							<!-- /col02 --></div>
+						<!-- /wrap --></div>					
+						<!-- advertisement-->
+						
+						<!-- /advertisement-->
+						
+						<div class="hgroup01">
+							<h3 class="heading3">早い順 8</h3>
+							<p class="btn02"><a href="javascript:document.location.reload()"><img src="/pc/images/bt07.gif" width="130" height="26" alt="再読み込み" class="rollover" /></a></p>
+						<!-- /hgroup01 --></div>
+						<div class="wrap">
+							<div class="col01">
+								<h4 class="heading4"><span>バスの系統と、行き先、経由</span></h4>
+								<table class="table01">
+									<tbody>
+										<tr>
+											<th><span>系統</span></th>
+											<td><span class="point">厚07
+												
+												<a href="displayrouteinfo?corpno=0&amp;routeno=19012&amp;rtripkbn=1&amp;fromStopNo=19001&amp;toStopNo=19002&amp;routeName=%8C%FA07&amp;keikaName=%90%5F%93%DE%90%EC%8D%48%89%C8%91%E5%8A%77%91%4F&amp;lastStopName=%82%A0%82%C2%82%AC%8B%BD%93%79%94%8E%95%A8%8A%D9&amp;fromStopRPS=1&amp;toStopRPS=2" target="_blank"><img src="/pc/images/bt08.gif" width="124" height="21" alt="バスルートを表示" class="btn01 rollover" /></a></span></td>
+										</tr>
+										<tr>
+											<th><span>行き先</span></th>
+											<td><span class="point">あつぎ郷土博物館</span></td>
+										</tr>
+										<tr>
+											<th><span>経由</span></th>
+											<td><span class="point">神奈川工科大学前</span></td>
+										</tr>
+											
+										<tr>
+											<th><span>車両番号</span></th>
+											<td><span class="point">き74
+																	
+																	
+																	
+																	★
+																	
+																	</span></td>
+										</tr>
+											
+									</tbody>
+								</table>
+								
+								<h4 class="heading4"><span>乗車バス停から降車バス停までの所要時分</span></h4>
+								<table class="table01">
+									<tbody>
+										<tr>
+											<th><span>所要時分</span></th>
+											<td><span class="point">
+											
+											2分
+											
+												（通常）
+											
+											</span></td>
+										</tr>
+									</tbody>
+								</table>
+								<h4 class="heading4"><span>運賃(大人)</span></h4>
+								<table class="table04">
+									<tbody>
+										<tr>
+											<th><span>現金</span></th>
+											<td><span class="point">
+													
+														230円
+													
+												</span>
+											</td>
+											<th><span>IC</span></th>
+											<td><span class="point">
+													
+														230円
+													
+												</span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							
+								<p>※印はノンステップバスです。 ★印はワンステップバスです。<br />
+								<!--  Ｌ印はリフト付きバスです。 -->Ｔ印はＴｗｉｎＬｉｎｅｒです。<br />
+								運行状況により、所要時分は異なります。目安としてお考えください。<br />
+								<span class=color01>「この便は、正確な情報が提供出来ていない可能性があります。」と表示されている際は、「車載器等の故障」、「運行予定の車両と別の車両で運行中」、「大幅な遅延」等の可能性があります。担当営業所までお問い合わせください。</span></p>
+							<!-- /col01 --></div>
+
+							<div class="col02">
+								<div class="hgroup01">
+									<h4 class="mt10"><img src="/pc/images/ti02.gif" width="364" height="36" alt="接近情報" /></h4>
+									<p class="text01">(最終更新 15:28）</p>
+								<!-- /hgroup01 --></div>
+								<div class="frameBox03">
+									<p class="title01">
+									
+										
+												厚木バスセンターを15:58発予定
+											
+											
+										
+									
+									</p>
+									
+									<div class="wrap">
+									
+
+									<div class="placeArea01 departure">
+										<div class="inner">
+											
+											<p>
+												
+													<span class="place">
+													<a href="https://transfer-cloud.navitime.biz/kanachu/courses?external-busstop=19001#pole-map" target="_blank">
+													2番のりば
+													</a>
+													</span>
+												
+											
+											厚木バスセンター
+											
+											
+											
+										<!-- /inner1 --></div>
+									<!-- /placeArea01 --></div>
+									<!-- /wrap --></div>
+								<!-- /frameBox03 --></div>
+							<!-- /col02 --></div>
+						<!-- /wrap --></div>					
+						<!-- advertisement-->
+						
+						<!-- /advertisement-->
+						
+						<div class="hgroup01">
+							<h3 class="heading3">早い順 9</h3>
+							<p class="btn02"><a href="javascript:document.location.reload()"><img src="/pc/images/bt07.gif" width="130" height="26" alt="再読み込み" class="rollover" /></a></p>
+						<!-- /hgroup01 --></div>
+						<div class="wrap">
+							<div class="col01">
+								<h4 class="heading4"><span>バスの系統と、行き先、経由</span></h4>
+								<table class="table01">
+									<tbody>
+										<tr>
+											<th><span>系統</span></th>
+											<td><span class="point">厚97
+												
+												<a href="displayrouteinfo?corpno=0&amp;routeno=19036&amp;rtripkbn=1&amp;fromStopNo=19001&amp;toStopNo=19002&amp;routeName=%8C%FA97&amp;keikaName=%8C%E1%8D%C8%92%63%92%6E&amp;lastStopName=%89%A4%8E%71&amp;fromStopRPS=1&amp;toStopRPS=2" target="_blank"><img src="/pc/images/bt08.gif" width="124" height="21" alt="バスルートを表示" class="btn01 rollover" /></a></span></td>
+										</tr>
+										<tr>
+											<th><span>行き先</span></th>
+											<td><span class="point">王子</span></td>
+										</tr>
+										<tr>
+											<th><span>経由</span></th>
+											<td><span class="point">吾妻団地</span></td>
+										</tr>
+											
+										<tr>
+											<th><span>車両番号</span></th>
+											<td><span class="point">あ71
+																	
+																	
+																	※
+																	
+																	
+																	</span></td>
+										</tr>
+											
+									</tbody>
+								</table>
+								
+								<h4 class="heading4"><span>乗車バス停から降車バス停までの所要時分</span></h4>
+								<table class="table01">
+									<tbody>
+										<tr>
+											<th><span>所要時分</span></th>
+											<td><span class="point">
+											
+											2分
+											
+												（通常）
+											
+											</span></td>
+										</tr>
+									</tbody>
+								</table>
+								<h4 class="heading4"><span>運賃(大人)</span></h4>
+								<table class="table04">
+									<tbody>
+										<tr>
+											<th><span>現金</span></th>
+											<td><span class="point">
+													
+														230円
+													
+												</span>
+											</td>
+											<th><span>IC</span></th>
+											<td><span class="point">
+													
+														230円
+													
+												</span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							
+								<p>※印はノンステップバスです。 ★印はワンステップバスです。<br />
+								<!--  Ｌ印はリフト付きバスです。 -->Ｔ印はＴｗｉｎＬｉｎｅｒです。<br />
+								運行状況により、所要時分は異なります。目安としてお考えください。<br />
+								<span class=color01>「この便は、正確な情報が提供出来ていない可能性があります。」と表示されている際は、「車載器等の故障」、「運行予定の車両と別の車両で運行中」、「大幅な遅延」等の可能性があります。担当営業所までお問い合わせください。</span></p>
+							<!-- /col01 --></div>
+
+							<div class="col02">
+								<div class="hgroup01">
+									<h4 class="mt10"><img src="/pc/images/ti02.gif" width="364" height="36" alt="接近情報" /></h4>
+									<p class="text01">(最終更新 15:28）</p>
+								<!-- /hgroup01 --></div>
+								<div class="frameBox03">
+									<p class="title01">
+									
+										
+												厚木バスセンターを16:00発予定
+											
+											
+										
+									
+									</p>
+									
+									<div class="wrap">
+									
+
+									<div class="placeArea01 departure">
+										<div class="inner">
+											
+											<p>
+												
+													<span class="place">
+													<a href="https://transfer-cloud.navitime.biz/kanachu/courses?external-busstop=19001#pole-map" target="_blank">
+													7番のりば
+													</a>
+													</span>
+												
+											
+											厚木バスセンター
+											
+											
+											
+										<!-- /inner1 --></div>
+									<!-- /placeArea01 --></div>
+									<!-- /wrap --></div>
+								<!-- /frameBox03 --></div>
+							<!-- /col02 --></div>
+						<!-- /wrap --></div>					
+						<!-- advertisement-->
+						
+						<!-- /advertisement-->
+						
+						<div class="hgroup01">
+							<h3 class="heading3">早い順 10</h3>
+							<p class="btn02"><a href="javascript:document.location.reload()"><img src="/pc/images/bt07.gif" width="130" height="26" alt="再読み込み" class="rollover" /></a></p>
+						<!-- /hgroup01 --></div>
+						<div class="wrap">
+							<div class="col01">
+								<h4 class="heading4"><span>バスの系統と、行き先、経由</span></h4>
+								<table class="table01">
+									<tbody>
+										<tr>
+											<th><span>系統</span></th>
+											<td><span class="point">厚12
+												
+												<a href="displayrouteinfo?corpno=0&amp;routeno=19018&amp;rtripkbn=1&amp;fromStopNo=19001&amp;toStopNo=19002&amp;routeName=%8C%FA12&amp;keikaName=%93%CE%94%F6%92%63%92%6E&amp;lastStopName=%82%DC%82%C2%82%A9%82%B0%91%E4&amp;fromStopRPS=1&amp;toStopRPS=2" target="_blank"><img src="/pc/images/bt08.gif" width="124" height="21" alt="バスルートを表示" class="btn01 rollover" /></a></span></td>
+										</tr>
+										<tr>
+											<th><span>行き先</span></th>
+											<td><span class="point">まつかげ台</span></td>
+										</tr>
+										<tr>
+											<th><span>経由</span></th>
+											<td><span class="point">鳶尾団地</span></td>
+										</tr>
+											
+										<tr>
+											<th><span>車両番号</span></th>
+											<td><span class="point">あ150
+																	
+																	
+																	※
+																	
+																	
+																	</span></td>
+										</tr>
+											
+									</tbody>
+								</table>
+								
+								<h4 class="heading4"><span>乗車バス停から降車バス停までの所要時分</span></h4>
+								<table class="table01">
+									<tbody>
+										<tr>
+											<th><span>所要時分</span></th>
+											<td><span class="point">
+											
+											2分
+											
+												（通常）
+											
+											</span></td>
+										</tr>
+									</tbody>
+								</table>
+								<h4 class="heading4"><span>運賃(大人)</span></h4>
+								<table class="table04">
+									<tbody>
+										<tr>
+											<th><span>現金</span></th>
+											<td><span class="point">
+													
+														230円
+													
+												</span>
+											</td>
+											<th><span>IC</span></th>
+											<td><span class="point">
+													
+														230円
+													
+												</span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							
+								<p>※印はノンステップバスです。 ★印はワンステップバスです。<br />
+								<!--  Ｌ印はリフト付きバスです。 -->Ｔ印はＴｗｉｎＬｉｎｅｒです。<br />
+								運行状況により、所要時分は異なります。目安としてお考えください。<br />
+								<span class=color01>「この便は、正確な情報が提供出来ていない可能性があります。」と表示されている際は、「車載器等の故障」、「運行予定の車両と別の車両で運行中」、「大幅な遅延」等の可能性があります。担当営業所までお問い合わせください。</span></p>
+							<!-- /col01 --></div>
+
+							<div class="col02">
+								<div class="hgroup01">
+									<h4 class="mt10"><img src="/pc/images/ti02.gif" width="364" height="36" alt="接近情報" /></h4>
+									<p class="text01">(最終更新 15:28）</p>
+								<!-- /hgroup01 --></div>
+								<div class="frameBox03">
+									<p class="title01">
+									
+										
+												厚木バスセンターを16:00発予定
+											
+											
+										
+									
+									</p>
+									
+									<div class="wrap">
+									
+
+									<div class="placeArea01 departure">
+										<div class="inner">
+											
+											<p>
+												
+													<span class="place">
+													<a href="https://transfer-cloud.navitime.biz/kanachu/courses?external-busstop=19001#pole-map" target="_blank">
+													1番のりば
+													</a>
+													</span>
+												
+											
+											厚木バスセンター
+											
+											
+											
+										<!-- /inner1 --></div>
+									<!-- /placeArea01 --></div>
+									<!-- /wrap --></div>
+								<!-- /frameBox03 --></div>
+							<!-- /col02 --></div>
+						<!-- /wrap --></div>					
+						<!-- advertisement-->
+						
+						<!-- /advertisement-->
+						
+						
+						<form method="get" name="form1" action="searchapproachinfo">
+							<input type="hidden" name="fNM" value="厚木バスセンター" />
+							<input type="hidden" name="tNM" value="本厚木駅" />
+							<p class="mt10 center"><a href="javascript:doAction1()"><img src="/pc/images/bt09.gif" width="119" height="25" alt="再検索する" class="rollover" /></a></p>
+						</form>
+						
+					<!-- /inner2 --></div>
+				<!-- /inner1 --></div>
+			<!-- /frameArea01 --></div>
+		<!-- /main --></div>
+		
+	<!-- /contents --></div>
+<!-- /wrapper --></div>
+
+
+
+
+
+
+<div id="footWrap" class="">
+	<div id="footInner">
+		<div id="footer">
+			<p class="pagetop"><a href="#header">ページトップへ戻る</a></p>
+
+			<div id="footNavi">
+				<ul>
+					<li><a href="https://www.kanachu.co.jp/rule.html">サイト利用規程</a></li>
+					<li><a href="https://www.kanachu.co.jp/contact/">お問い合わせ</a></li>
+					<li><a href="https://www.kanachu.co.jp/emergency.html">緊急事態発生時通報のお願い</a></li>
+				</ul>
+			<!-- /footNavi --></div>
+
+			<p id="copyright">Copyright (c) KANACHU All Rights Reserved</p>
+		<!-- /footer --></div>
+	<!-- /footInner --></div>
+<!-- /footWrap --></div>
+
+
+<!-- advertisement-->
+<div id="float-bnr" style="position: fixed; z-index: 10000; left: 0px; bottom: 0px; width: 100%; left: 50%; transform: translate(-50%, 0);  display: block; padding-bottom:1.5px; background: rgba(40, 40, 40, 0.30); filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr=#50000000,EndColorStr=#50000000);">
+<div style="position:relative;display:block;width:728px;height:90px;margin:10px auto 3px; background:#FFF; top:0;">
+
+<script type="text/javascript">
+var microadCompass = microadCompass || {};
+microadCompass.queue = microadCompass.queue || [];
+</script>
+<script type="text/javascript" charset="UTF-8" src="//j.microad.net/js/compass.js" onload="new microadCompass.AdInitializer().initialize();" async></script><div id="b2aa1a34ff11d572be645a09d4b48846" >
+    <script type="text/javascript">
+        microadCompass.queue.push({
+            "spot": "b2aa1a34ff11d572be645a09d4b48846"
+        });
+    </script>
+</div>
+
+</div>
+
+<div id="bnr-close" style="position:absolute; top:0; right:calc(50% - 400px); width:24px; height:24px; border: 1px solid rgba(255, 255, 255, 0.3);background:rgba(0,0,0,.5); background:#000¥9; color: #fff;cursor: pointer;font-size: 24px;line-height: 24px;text-align: center;">&times;</div>
+<script type="text/javascript">
+
+document.getElementById('bnr-close').addEventListener('click', function(){ document.getElementById('float-bnr').style.display = 'none'; });
+
+</script>
+
+</div>
+<!-- /advertisement-->
+</body>
+</html>
+
