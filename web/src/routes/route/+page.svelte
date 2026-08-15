@@ -86,7 +86,7 @@
       <div class="mb-4 rounded-xl border border-amber-200 bg-amber-50 p-3">
         <p class="mb-2 text-sm font-medium text-amber-800">🚌 乗車バス停より手前のバス</p>
         <div class="space-y-2">
-          {#each outsideBuses as bus (bus.vehicle)}
+          {#each outsideBuses as bus (bus.vehicle + bus.routePath)}
             <div class="text-xs">
               <span class="font-semibold text-amber-800">{bus.vehicle}</span>
               <span class="ml-1 text-amber-700">{bus.statusText}</span>
