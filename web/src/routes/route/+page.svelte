@@ -121,16 +121,17 @@
         {#each route.stops as stop, i (i)}
           {@const hasBus = stop.busesHere.includes(bus.vehicle)}
           {@const isMarker = markerStop === stop.name}
-          <li class="relative flex items-start gap-3 pb-4 last:pb-0">
+          {@const active = hasBus || isMarker}
+          <li class="relative flex h-14 items-center gap-3">
             {#if i < route.stops.length - 1}
               <span
-                class="absolute left-[11px] top-6 h-full w-0.5 {hasBus || isMarker
+                class="absolute left-[18px] top-0 h-full w-0.5 {active
                   ? 'bg-amber-300'
                   : 'bg-gray-200'}"
               ></span>
             {/if}
             <span
-              class="mt-1.5 h-3 w-3 shrink-0 rounded-full {hasBus
+              class="relative z-10 h-3 w-3 shrink-0 rounded-full ring-2 ring-white {hasBus
                 ? 'bg-blue-500'
                 : isMarker
                   ? 'bg-amber-400'
@@ -140,25 +141,23 @@
                       ? 'bg-red-500'
                       : 'bg-gray-300'}"
             ></span>
-            <div class="min-w-0 flex-1">
-              <p class="{hasBus || isMarker ? 'font-bold' : ''}">{stop.name}</p>
-              <div class="flex flex-wrap gap-1.5">
-                {#if stop.type === 'departure'}
-                  <span class="rounded bg-green-100 px-1.5 py-0.5 text-xs text-green-700">乗車</span>
-                {:else if stop.type === 'destination'}
-                  <span class="rounded bg-red-100 px-1.5 py-0.5 text-xs text-red-700">降車</span>
-                {/if}
-                {#if hasBus}
-                  <span class="rounded bg-blue-100 px-1.5 py-0.5 text-xs font-medium text-blue-700">
-                    🚌 {bus.vehicle}
-                  </span>
-                {/if}
-                {#if isMarker}
-                  <span class="rounded bg-amber-100 px-1.5 py-0.5 text-xs font-medium text-amber-700">
-                    🚌 {bus.vehicle}
-                  </span>
-                {/if}
-              </div>
+            <div class="flex min-w-0 flex-1 items-center gap-1.5">
+              <span class="truncate {active ? 'font-bold' : ''}">{stop.name}</span>
+              {#if stop.type === 'departure'}
+                <span class="shrink-0 rounded bg-green-100 px-1.5 py-0.5 text-xs text-green-700">乗車</span>
+              {:else if stop.type === 'destination'}
+                <span class="shrink-0 rounded bg-red-100 px-1.5 py-0.5 text-xs text-red-700">降車</span>
+              {/if}
+              {#if hasBus}
+                <span class="shrink-0 rounded bg-blue-100 px-1.5 py-0.5 text-xs font-medium text-blue-700">
+                  🚌 {bus.vehicle}
+                </span>
+              {/if}
+              {#if isMarker}
+                <span class="shrink-0 rounded bg-amber-100 px-1.5 py-0.5 text-xs font-medium text-amber-700">
+                  🚌 {bus.vehicle}
+                </span>
+              {/if}
             </div>
           </li>
         {/each}
