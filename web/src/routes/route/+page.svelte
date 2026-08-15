@@ -1,39 +1,53 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { getApproach, getRoute } from '$lib/api';
-  import type { ApproachBus, ApproachInfo, RouteInfo } from '$lib/types';
+  import type { ApproachBus, RouteInfo } from '$lib/types';
+
+  // URL: /route?vehicle=ま96&from=22072&to=22001&routeno=22042
+  const p = new URLSearchParams(window.location.search);
+  const vehicle = p.get('vehicle') ?? '';
+  const from = Number(p.get('from'));
+  const to = Number(p.get('to'));
+  const routeno = p.get('routeno') ?? '';
 
   let route = $state<RouteInfo | null>(null);
-  let approach = $state<ApproachInfo | null>(null);
+  let bus = $state<ApproachBus | null>(null);
+  let notFound = $state(false);
   let error = $state('');
   let lastUpdated = $state<Date | null>(null);
-  let vehicle = $state('');
 
-  function load() {
-    const p = new URLSearchParams(window.location.search);
-    const params = {
-      routeno: p.get('routeno') ?? '',
-      fromStopNo: p.get('fromStopNo') ?? '',
-      toStopNo: p.get('toStopNo') ?? '',
-      routeName: p.get('routeName') ?? '',
-      keikaName: p.get('keikaName') ?? '',
-      lastStopName: p.get('lastStopName') ?? '',
-    };
-    // approach から遷移した場合、クリックされた車両だけに絞る
-    vehicle = p.get('vehicle') ?? '';
-    getRoute(params)
-      .then((d) => {
-        route = d;
-        lastUpdated = new Date();
-        error = '';
-      })
-      .catch((e) => (error = (e as Error).message));
-    const from = Number(params.fromStopNo);
-    const to = Number(params.toStopNo);
-    if (from && to) {
-      getApproach(from, to)
-        .then((d) => (approach = d))
-        .catch(() => {});
+  async function load() {
+    if (!vehicle || !from || !to || !routeno) {
+      error = '車両が指定されていません';
+      return;
+    }
+    try {
+      // 1. approach から該当車両を解決(車番+系統で一意に特定)
+      const info = await getApproach(from, to);
+      const found =
+        info.buses.find(
+          (b) => b.vehicle === vehicle && b.routePath.includes(`routeno=${routeno}`),
+        ) ?? null;
+      bus = found;
+      notFound = !found;
+      if (!found) {
+        route = null;
+        return;
+      }
+      // 2. 車両の系統情報からルート図を取得
+      const r = await getRoute({
+        routeno,
+        fromStopNo: String(from),
+        toStopNo: String(to),
+        routeName: found.route,
+        keikaName: found.via,
+        lastStopName: found.destination,
+      });
+      route = r;
+      lastUpdated = new Date();
+      error = '';
+    } catch (e) {
+      error = (e as Error).message;
     }
   }
 
@@ -47,35 +61,20 @@
     return d.toLocaleTimeString('ja-JP');
   }
 
-  // ルート図内(busesHere)に表示済みの車両は、接近マーカーを出さない(二重表示防止)
-  const onRouteVehicles = $derived.by(
-    () => new Set(route?.stops.flatMap((s) => s.busesHere) ?? []),
-  );
-
-  // 接近中のバス(運行中)を、ルート図の「次の通過バス停」の位置にマップする
-  // approachingStops の先頭 = バスが次に通るバス停 = 現在位置の目安
-  // approach から遷移した場合(vehicle 指定)は、クリックされた車両だけに絞る
-  const busMarkers = $derived.by(() => {
-    const map = new Map<string, ApproachBus[]>();
-    if (!approach) return map;
-    for (const bus of approach.buses) {
-      if (bus.etaMinutes === null) continue; // 未発バスは現在位置が無い
-      if (vehicle && bus.vehicle !== vehicle) continue;
-      if (onRouteVehicles.has(bus.vehicle)) continue; // ルート内は busesHere で表示済み
-      const next = bus.approachingStops[0]?.replace(/\s*（.*?着予定）/, '').trim();
-      if (!next) continue;
-      const arr = map.get(next) ?? [];
-      arr.push(bus);
-      map.set(next, arr);
-    }
-    return map;
+  // 接近中マーカーの位置(ルート外のときのみ): approachingStops の先頭 = 次の通過バス停
+  const markerStop = $derived.by(() => {
+    if (!bus || !route) return null;
+    const onRoute = route.stops.some((s) => s.busesHere.includes(bus!.vehicle));
+    if (onRoute) return null; // ルート内は busesHere(青)で表示済み
+    if (bus.etaMinutes === null) return null; // 未発バスは位置なし
+    return bus.approachingStops[0]?.replace(/\s*（.*?着予定）/, '').trim() ?? null;
   });
 </script>
 
 <div class="mx-auto max-w-lg px-4 py-8">
   <div class="mb-6 flex items-center justify-between">
     <a
-      href="/approach?from={new URLSearchParams(window.location.search).get('fromStopNo')}&to={new URLSearchParams(window.location.search).get('toStopNo')}"
+      href="/approach?from={from}&to={to}"
       class="text-sm text-blue-600 hover:underline"
     >
       ← 接近情報に戻る
@@ -93,34 +92,33 @@
 
   {#if error}
     <p class="text-red-600">{error}</p>
-  {:else if route}
-    <h1 class="mb-1 text-xl font-bold">
-      {route.route}系統 {route.destination}行き
-    </h1>
-    {#if vehicle}
-      <p class="mb-1 text-sm font-medium text-amber-700">🚌 {vehicle} の運行状況</p>
-    {/if}
-    {#if route.via}
-      <p class="mb-4 text-sm text-gray-500">{route.via}経由</p>
-    {/if}
-
-    {@const hasAnyBus =
-      route.stops.some((s) => s.busesHere.length > 0) || busMarkers.size > 0}
-    {#if !hasAnyBus}
-      <p class="mb-3 rounded-lg bg-gray-50 px-3 py-2 text-center text-sm text-gray-500">
-        現在この区間を運行中のバスはいません
-      </p>
-    {/if}
+  {:else if notFound}
+    <h1 class="mb-2 text-xl font-bold">🚌 {vehicle}</h1>
+    <p class="rounded-lg bg-gray-50 px-3 py-2 text-sm text-gray-600">
+      この車両は現在この区間に接近していません
+    </p>
+  {:else if bus && route}
+    <h1 class="mb-1 text-xl font-bold">🚌 {bus.vehicle}</h1>
+    <p class="text-sm text-gray-800">
+      {bus.route} {bus.destination}行き
+      {#if bus.via}<span class="text-gray-500">({bus.via}経由)</span>{/if}
+      <span class="ml-1 text-xs text-gray-400">現金 {bus.fare.cash}円 / IC {bus.fare.ic}円</span>
+    </p>
+    <p class="mb-4 text-sm text-blue-600">
+      {bus.etaMinutes !== null
+        ? `運行中 ・乗車バス停まであと${bus.etaMinutes}分`
+        : bus.statusText}
+    </p>
 
     <div class="rounded-xl border border-gray-200 bg-white p-4">
       <ol>
         {#each route.stops as stop, i (i)}
-          {@const hasBus = stop.busesHere.length > 0}
-          {@const busesNearby = busMarkers.get(stop.name) ?? []}
+          {@const hasBus = stop.busesHere.includes(bus.vehicle)}
+          {@const isMarker = markerStop === stop.name}
           <li class="relative flex items-start gap-3 pb-4 last:pb-0">
             {#if i < route.stops.length - 1}
               <span
-                class="absolute left-[11px] top-6 h-full w-0.5 {hasBus || busesNearby.length > 0
+                class="absolute left-[11px] top-6 h-full w-0.5 {hasBus || isMarker
                   ? 'bg-amber-300'
                   : 'bg-gray-200'}"
               ></span>
@@ -128,7 +126,7 @@
             <span
               class="mt-1.5 h-3 w-3 shrink-0 rounded-full {hasBus
                 ? 'bg-blue-500'
-                : busesNearby.length > 0
+                : isMarker
                   ? 'bg-amber-400'
                   : stop.type === 'departure'
                     ? 'bg-green-500'
@@ -137,26 +135,23 @@
                       : 'bg-gray-300'}"
             ></span>
             <div class="min-w-0 flex-1">
-              <p class="{hasBus || busesNearby.length > 0 ? 'font-bold' : ''}">{stop.name}</p>
+              <p class="{hasBus || isMarker ? 'font-bold' : ''}">{stop.name}</p>
               <div class="flex flex-wrap gap-1.5">
                 {#if stop.type === 'departure'}
                   <span class="rounded bg-green-100 px-1.5 py-0.5 text-xs text-green-700">乗車</span>
                 {:else if stop.type === 'destination'}
                   <span class="rounded bg-red-100 px-1.5 py-0.5 text-xs text-red-700">降車</span>
                 {/if}
-                {#each busesNearby as b (b.vehicle + b.routePath)}
-                  <span
-                    class="rounded bg-amber-100 px-1.5 py-0.5 text-xs font-medium text-amber-700"
-                    title={b.statusText}
-                  >
-                    🚌 {b.vehicle}
-                  </span>
-                {/each}
-                {#each stop.busesHere as v (v)}
+                {#if hasBus}
                   <span class="rounded bg-blue-100 px-1.5 py-0.5 text-xs font-medium text-blue-700">
-                    🚌 {v}
+                    🚌 {bus.vehicle}
                   </span>
-                {/each}
+                {/if}
+                {#if isMarker}
+                  <span class="rounded bg-amber-100 px-1.5 py-0.5 text-xs font-medium text-amber-700">
+                    🚌 {bus.vehicle}
+                  </span>
+                {/if}
               </div>
             </div>
           </li>

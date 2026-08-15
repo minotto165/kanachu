@@ -31,13 +31,10 @@
     const m = bus.routePath.match(/routeno=(\d+)/);
     if (!m) return;
     const q = new URLSearchParams({
-      routeno: m[1],
-      fromStopNo: String(from),
-      toStopNo: String(to),
-      routeName: bus.route,
-      keikaName: bus.via,
-      lastStopName: bus.destination,
       vehicle: bus.vehicle,
+      from: String(from),
+      to: String(to),
+      routeno: m[1],
     });
     goto(`/route?${q}`);
   }
