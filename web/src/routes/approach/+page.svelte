@@ -66,7 +66,9 @@
           <div class="mb-1 flex items-baseline justify-between">
             <span class="text-lg font-bold">{bus.route}</span>
             <span class="text-sm text-gray-600">
-              {#if bus.etaMinutes !== null}
+              {#if bus.statusText.includes('まもなく到着')}
+                <span class="text-xl font-bold text-blue-600">まもなく到着</span>
+              {:else if bus.etaMinutes !== null}
                 <span class="text-xl font-bold text-blue-600">{bus.etaMinutes}</span>分後
               {:else}
                 {@const dep = bus.statusText.match(/(\d{1,2}:\d{2})発予定/)?.[1] ?? ''}

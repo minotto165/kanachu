@@ -105,9 +105,15 @@
       <span class="ml-1 text-xs text-gray-400">現金 {bus.fare.cash}円 / IC {bus.fare.ic}円</span>
     </p>
     <p class="mb-4 text-sm text-blue-600">
-      {bus.etaMinutes !== null
-        ? `運行中 ・乗車バス停まであと${bus.etaMinutes}分`
-        : bus.statusText}
+      {#if bus.etaMinutes !== null}
+        {#if bus.statusText.includes('まもなく到着')}
+          運行中 ・まもなく到着
+        {:else}
+          運行中 ・乗車バス停まであと{bus.etaMinutes}分
+        {/if}
+      {:else}
+        {bus.statusText}
+      {/if}
     </p>
 
     <div class="rounded-xl border border-gray-200 bg-white p-4">
