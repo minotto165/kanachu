@@ -80,11 +80,6 @@
           {#if bus.statusText}
             <div class="mb-1 text-xs text-gray-500">{bus.statusText}</div>
           {/if}
-          {#if bus.approachingStops.length > 0}
-            <div class="mb-1 overflow-hidden text-ellipsis whitespace-nowrap text-xs text-gray-400">
-              📍 {bus.approachingStops.join(' → ')}
-            </div>
-          {/if}
           <div class="flex items-center justify-between text-xs text-gray-500">
             <span>🚌 {bus.vehicle}{bus.mark}</span>
             <span>現金 {bus.fare.cash}円 / IC {bus.fare.ic}円</span>

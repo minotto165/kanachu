@@ -17,7 +17,7 @@ export interface ApproachBus {
   etaMinutes: number | null;
   /** 接近情報ステータス(「笹子にあと24分で到着 運行中」等) */
   statusText: string;
-  /** 現在位置から乗車バス停までのバス停リスト */
+  /** 乗車バス停までに通過するバス停リスト(現在位置ではない。区間共通) */
   approachingStops: string[];
   status: "normal" | "late" | "unknown";
   fare: { cash: number; ic: number };
